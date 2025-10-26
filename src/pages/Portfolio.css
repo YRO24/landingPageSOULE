@@ -1,0 +1,148 @@
+.portfolio-page {
+  padding-top: 80px;
+}
+
+.portfolio-hero {
+  background: #555;
+  color: white;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.portfolio-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+.portfolio-nav {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+}
+
+.portfolio-nav ul {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.portfolio-nav button {
+  background: none;
+  border: none;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+  font-family: inherit;
+  position: relative;
+}
+
+.portfolio-nav li.active button {
+  color: #000;
+}
+
+.portfolio-nav li.active button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #000;
+}
+
+.portfolio-nav button:hover {
+  color: #000;
+}
+
+.portfolio-grid {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.portfolio-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-overlay h3 {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .portfolio-nav ul {
+    gap: 1.5rem;
+    overflow-x: auto;
+  }
+  
+  .portfolio-nav button {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
