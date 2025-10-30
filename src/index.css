@@ -1,3 +1,5 @@
+@import './styles/animations.css';
+
 @font-face {
   font-family: 'GeneralSans';
   src: url('/assets/fonts/GeneralSans-Variable.ttf') format('truetype');

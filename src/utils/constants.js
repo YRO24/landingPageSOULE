@@ -1,6 +1,7 @@
 // Asset paths
 export const IMAGES = {
   logo: '/assets/images/logo.png',
+  souleLogo: '/assets/images/PNG/Soule%20Final%20logo%20All-05.png',
   hero: '/assets/images/211f3c95044295.5fb63d2d2e82c.jpg',
   bedroom4: '/assets/images/DAY%20BEDROOM%20VIEW%204.jpg',
   bedroom5: '/assets/images/DAY%20BEDROOM%20VIEW%205.jpg',

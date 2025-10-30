@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = ({ children, variant = 'primary', to, onClick, className = '' }) => {
-  const buttonClass = `btn btn-${variant} ${className}`;
+  const buttonClass = `btn btn-${variant} animated-button ${className}`;
   
   if (to) {
     return (
       <Link to={to} className={buttonClass}>
-        {children}
+        <span className="btn-content">{children}</span>
       </Link>
     );
   }
   
   return (
     <button className={buttonClass} onClick={onClick}>
-      {children}
+      <span className="btn-content">{children}</span>
     </button>
   );
 };
