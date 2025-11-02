@@ -35,18 +35,18 @@ export const projectsData = [
 export const communitiesData = [
   {
     id: 1,
-    name: 'Jumeirah Islands',
-    logo: IMAGES.propertyLogo
+    name: 'Tilal Al Ghaf',
+    logo: IMAGES.tilalLogo
   },
   {
     id: 2,
-    name: 'Dubai Hills',
-    logo: IMAGES.palmJumeirah
+    name: 'Property Development',
+    logo: IMAGES.propertyLogo
   },
   {
     id: 3,
-    name: 'Tilal Al Ghaf',
-    logo: IMAGES.tilalLogo
+    name: 'Palm Jumeirah',
+    logo: IMAGES.palmJumeirah
   }
 ];
 

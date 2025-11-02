@@ -1,4 +1,62 @@
-/* Custom cursor disabled - using default cursor */
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Custom Cursor with Logo - Optimized for performance */
 .custom-cursor {
-  display: none;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  /* No transition on transform for instant movement */
+}
+
+.cursor-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hovering state */
+.custom-cursor.hovering .cursor-logo {
+  opacity: 1;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.35));
+  animation: rotate 10s linear infinite;
+}
+
+/* Clicking state */
+.custom-cursor.clicking .cursor-logo {
+  animation: rotate 5s linear infinite;
+}
+
+/* Mobile - show default cursor */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor {
+    display: none;
+  }
 }

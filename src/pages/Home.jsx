@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Hero from '../components/sections/Hero';
 import ProjectShowcase from '../components/sections/ProjectShowcase';
 import ContactForm from '../components/sections/ContactForm';
@@ -6,15 +8,45 @@ import Button from '../components/common/Button';
 import ProjectCard from '../components/common/ProjectCard';
 import { projectsData } from '../data/content';
 import { IMAGES } from '../utils/constants';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import './Home.css';
 
 const Home = () => {
   const featuredProject = projectsData[0];
-  const [aboutRef, aboutVisible] = useScrollAnimation();
-  const [showcaseRef1, showcase1Visible] = useScrollAnimation();
-  const [showcaseRef2, showcase2Visible] = useScrollAnimation();
-  const [communitiesRef, communitiesVisible] = useScrollAnimation();
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [isHeroScrollLocked, setIsHeroScrollLocked] = useState(false);
+  
+  // Define images for each category
+  const categoryImages = {
+    INTERIORS: IMAGES.office1,
+    RESIDENTIAL: IMAGES.office1,
+    ARCHITECTURE: IMAGES.office1
+  };
+  
+  // Framer Motion variants for animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+    }
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.8, ease: 'easeOut' }
+    }
+  };
+
+  // Hero slideshow images
+  const heroSlideImages = [
+    IMAGES.bedroom4,
+    IMAGES.bedroom5,
+    IMAGES.kalpesh5,
+    IMAGES.office1
+  ];
 
   return (
     <div className="home-page">
@@ -24,12 +56,20 @@ const Home = () => {
         backgroundImage={IMAGES.bedroom4}
         hasSlider={true}
         communityName=""
+        slideImages={heroSlideImages}
+        onScrollLockChange={setIsHeroScrollLocked}
       />
       
+      {/* Spacer for when hero is in fixed position */}
+      {isHeroScrollLocked && <div className="hero-spacer"></div>}
+      
       {/* About Soule Section */}
-      <section 
-        ref={aboutRef}
-        className={`about-soule slide-up ${aboutVisible ? 'visible' : ''}`}
+      <motion.section 
+        className="about-soule"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
       >
         <div className="about-content">
           <div className="about-header">
@@ -45,34 +85,42 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
       
       {/* Three Card Section */}
       <section className="three-cards-section">
         <ProjectCard 
-          image={IMAGES.guestWalkIn}
+          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
           category="INTERIORS"
           logo={IMAGES.souleLogo}
-          link="/portfolio"
+          onMouseEnter={() => setHoveredCategory('INTERIORS')}
+          onMouseLeave={() => setHoveredCategory(null)}
+          isHovered={hoveredCategory === 'INTERIORS'}
         />
         <ProjectCard 
-          image={IMAGES.kalpesh4}
+          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
           category="RESIDENTIAL"
           logo={IMAGES.souleLogo}
-          link="/portfolio"
+          onMouseEnter={() => setHoveredCategory('RESIDENTIAL')}
+          onMouseLeave={() => setHoveredCategory(null)}
+          isHovered={hoveredCategory === 'RESIDENTIAL'}
         />
         <ProjectCard 
-          image={IMAGES.kalpesh6}
+          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
           category="ARCHITECTURE"
           logo={IMAGES.souleLogo}
-          link="/portfolio"
+          onMouseEnter={() => setHoveredCategory('ARCHITECTURE')}
+          onMouseLeave={() => setHoveredCategory(null)}
+          isHovered={hoveredCategory === 'ARCHITECTURE'}
         />
       </section>
       
       {/* Project Showcase - Single Full Width */}
-      <div 
-        ref={showcaseRef1}
-        className={`fade-in ${showcase1Visible ? 'visible' : ''}`}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
       >
         <ProjectShowcase 
           title={featuredProject.title}
@@ -81,12 +129,14 @@ const Home = () => {
           dark={true}
           link="/project/1"
         />
-      </div>
+      </motion.div>
       
       {/* Second Project Showcase - Reversed */}
-      <div 
-        ref={showcaseRef2}
-        className={`fade-in ${showcase2Visible ? 'visible' : ''}`}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
       >
         <ProjectShowcase 
           title={featuredProject.title}
@@ -96,15 +146,17 @@ const Home = () => {
           reverse={true}
           link="/project/1"
         />
-      </div>
+      </motion.div>
       
       {/* Communities Section */}
-      <div 
-        ref={communitiesRef}
-        className={`slide-up ${communitiesVisible ? 'visible' : ''}`}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
       >
         <Communities />
-      </div>
+      </motion.div>
       
       <ContactForm />
     </div>

@@ -2,6 +2,7 @@
   padding: 5rem 0 6rem;
   background: white;
   text-align: center;
+  overflow: hidden;
 }
 
 .communities-section h2 {
@@ -12,42 +13,48 @@
   color: #333;
 }
 
-.communities-logos {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.communities-strip-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.communities-logos-strip {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6rem;
-  flex-wrap: wrap;
+  gap: 8rem;
+  width: max-content;
+  will-change: transform;
 }
 
 .community-logo-item {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  min-width: 150px;
-}
-
-.community-logo-item img {
-  max-width: 120px;
-  max-height: 120px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(100%) brightness(0.4);
-  opacity: 0.7;
+  min-width: 220px;
   transition: all 0.3s ease;
 }
 
+.community-logo-item img {
+  max-width: 200px;
+  max-height: 140px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.communities-logos-strip:hover .community-logo-item img {
+  opacity: 0.9;
+}
+
 .community-logo-item:hover img {
-  filter: grayscale(0%) brightness(1);
-  opacity: 1;
-  transform: scale(1.05);
+  opacity: 1 !important;
+  transform: scale(1.15);
 }
 
 .community-name {

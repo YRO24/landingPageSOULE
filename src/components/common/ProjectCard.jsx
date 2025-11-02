@@ -1,25 +1,39 @@
+import { motion } from 'framer-motion';
 import './ProjectCard.css';
-import Button from '../common/Button';
 
-const ProjectCard = ({ image, category, title, description, link, overlay = true, logo }) => {
+const ProjectCard = ({ image, category, title, description, overlay = true, logo, onMouseEnter, onMouseLeave, isHovered }) => {
   return (
-    <div className="project-card cursor-hover">
-      <div className="project-card-image image-zoom">
-        <img src={image} alt={category || title} />
+    <motion.div 
+      className={`project-card cursor-hover ${isHovered ? 'is-hovered' : ''}`}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="project-card-image">
+        <motion.img 
+          src={image} 
+          alt={category || title}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        />
         {overlay && <div className="project-card-overlay"></div>}
       </div>
-      <div className="project-card-content">
+      <motion.div 
+        className="project-card-content"
+        transition={{ duration: 0.3 }}
+      >
         {logo && (
-          <div className="project-card-logo">
+          <motion.div 
+            className="project-card-logo"
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
             <img src={logo} alt="Logo" />
-          </div>
+          </motion.div>
         )}
         {category && <h3 className="project-card-category">{category}</h3>}
         {title && <h3>{title}</h3>}
         {description && <p>{description}</p>}
-        {link && <Button variant="dark" to={link}>READ MORE</Button>}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -20,6 +20,26 @@
   letter-spacing: 1px;
 }
 
+.underline-animated {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.contact-section:hover .underline-animated::after {
+  width: 100%;
+}
+
 .contact-right h3 {
   font-size: 1rem;
   letter-spacing: 2px;

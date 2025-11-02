@@ -28,7 +28,9 @@ const ContactForm = ({ title = "Ready to transform your space?" }) => {
     <section className="contact-section">
       <div className="contact-container">
         <div className="contact-left">
-          <h2>{title}</h2>
+          <h2>
+            <span className="underline-animated">Ready</span> to transform your space?
+          </h2>
         </div>
         
         <div className="contact-right">
