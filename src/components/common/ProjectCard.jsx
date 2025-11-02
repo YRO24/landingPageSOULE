@@ -1,7 +1,17 @@
 import { motion } from 'framer-motion';
 import './ProjectCard.css';
 
-const ProjectCard = ({ image, category, title, description, overlay = true, logo, onMouseEnter, onMouseLeave, isHovered }) => {
+const ProjectCard = ({ 
+  image, 
+  category, 
+  title, 
+  description, 
+  overlay = true, 
+  logo, 
+  onMouseEnter, 
+  onMouseLeave, 
+  isHovered
+}) => {
   return (
     <motion.div 
       className={`project-card cursor-hover ${isHovered ? 'is-hovered' : ''}`}

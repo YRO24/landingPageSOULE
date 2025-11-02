@@ -17,9 +17,9 @@ const Home = () => {
   
   // Define images for each category
   const categoryImages = {
-    INTERIORS: IMAGES.office1,
-    RESIDENTIAL: IMAGES.office1,
-    ARCHITECTURE: IMAGES.office1
+    INTERIORS: IMAGES.bedroom4,
+    RESIDENTIAL: IMAGES.kalpesh5,
+    ARCHITECTURE: IMAGES.bedroom5
   };
   
   // Framer Motion variants for animations
@@ -88,9 +88,19 @@ const Home = () => {
       </motion.section>
       
       {/* Three Card Section */}
-      <section className="three-cards-section">
+      <section 
+        className="three-cards-section"
+        style={{
+          backgroundImage: hoveredCategory 
+            ? `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${categoryImages[hoveredCategory]})`
+            : 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transition: 'background-image 0.6s ease-in-out'
+        }}
+      >
         <ProjectCard 
-          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
+          image={categoryImages.INTERIORS}
           category="INTERIORS"
           logo={IMAGES.souleLogo}
           onMouseEnter={() => setHoveredCategory('INTERIORS')}
@@ -98,7 +108,7 @@ const Home = () => {
           isHovered={hoveredCategory === 'INTERIORS'}
         />
         <ProjectCard 
-          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
+          image={categoryImages.RESIDENTIAL}
           category="RESIDENTIAL"
           logo={IMAGES.souleLogo}
           onMouseEnter={() => setHoveredCategory('RESIDENTIAL')}
@@ -106,7 +116,7 @@ const Home = () => {
           isHovered={hoveredCategory === 'RESIDENTIAL'}
         />
         <ProjectCard 
-          image={hoveredCategory ? categoryImages[hoveredCategory] : IMAGES.office1}
+          image={categoryImages.ARCHITECTURE}
           category="ARCHITECTURE"
           logo={IMAGES.souleLogo}
           onMouseEnter={() => setHoveredCategory('ARCHITECTURE')}

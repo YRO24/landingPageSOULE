@@ -55,9 +55,9 @@
 }
 
 .hero-content h1 {
-  font-family: 'Didot', 'Bodoni MT', 'Playfair Display', serif;
+  font-family: 'PF Marlet Display';
   font-size: 5.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 0.5rem;
   letter-spacing: 0.01rem;
   animation: fadeInUp 1s ease-out;
@@ -65,9 +65,9 @@
 }
 
 .hero-content h2 {
-  font-family: 'Didot', 'Bodoni MT', 'Playfair Display', serif;
+  font-family: 'PF Marlet Display';
   font-size: 5.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 4rem;
   letter-spacing: 0.01em;
   animation: fadeInUp 1s ease-out 0.2s both;

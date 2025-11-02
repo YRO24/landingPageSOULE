@@ -12,7 +12,7 @@ const Navbar = () => {
     // Start hide timer on mount
     hideTimeoutRef.current = setTimeout(() => {
       setIsVisible(false);
-    }, 3000); // 3 second delay before hiding
+    }, 4000); // 4 second delay before hiding (slightly longer for better UX)
 
     return () => {
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
@@ -20,17 +20,17 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Detect light background sections
+    // Detect light background sections and communities section
     const handleScroll = () => {
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section');
-      const navbarHeight = 150; // Approximate navbar height
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section');
+      const navbarHeight = 200; // Increased height to ensure proper detection
       
       let isOverLightSection = false;
       
       lightSections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        // Check if navbar overlaps with light section
-        if (rect.top < navbarHeight && rect.bottom > 0) {
+        // Check if navbar overlaps with light section (more generous detection)
+        if (rect.top < navbarHeight && rect.bottom > -50) {
           isOverLightSection = true;
         }
       });
@@ -38,10 +38,22 @@ const Navbar = () => {
       setIsDarkTheme(isOverLightSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Use throttled scroll for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     handleScroll(); // Check initial state
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
   const handleMouseEnter = () => {
@@ -58,7 +70,7 @@ const Navbar = () => {
     }
     hideTimeoutRef.current = setTimeout(() => {
       setIsVisible(false);
-    }, 1500); // 1.5 second delay before hiding after mouse leaves
+    }, 2000); // 2 second delay before hiding after mouse leaves
   };
 
   return (
@@ -80,7 +92,7 @@ const Navbar = () => {
           
           <div className="nav-center">
             <img 
-              src={isDarkTheme ? IMAGES.souleLogo : IMAGES.souleLogoNavbarCenter} 
+              src={isDarkTheme ? IMAGES.souleLogoNavbarCenterDark : IMAGES.souleLogoNavbarCenter} 
               alt="Soule Logo" 
               className="center-logo" 
             />

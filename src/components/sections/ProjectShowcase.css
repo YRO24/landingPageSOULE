@@ -53,8 +53,9 @@
 }
 
 .project-info h2 {
+  font-family: 'PF Marlet Display';
   font-size: 3.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 2.5rem;
   letter-spacing: 1px;
   line-height: 1.1;

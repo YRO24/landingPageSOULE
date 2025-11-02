@@ -7,8 +7,8 @@ const Communities = () => {
   const duplicatedLogos = [...communitiesData, ...communitiesData, ...communitiesData, ...communitiesData];
 
   // Calculate the width to scroll (one full set of logos)
-  // Assuming each logo takes approximately 180px (min-width) + 8rem gap (128px) = ~308px
-  const itemWidth = 308; // Adjust based on your actual spacing
+  // Each logo takes approximately 280px (min-width) + 8rem gap (128px) = ~408px
+  const itemWidth = 408; // Adjust based on actual spacing with names
   const scrollDistance = -(communitiesData.length * itemWidth);
 
   return (
@@ -32,6 +32,7 @@ const Communities = () => {
           {duplicatedLogos.map((community, index) => (
             <div key={`${community.id}-${index}`} className="community-logo-item">
               <img src={community.logo} alt={community.name} />
+              <span className="community-name">{community.name}</span>
             </div>
           ))}
         </motion.div>

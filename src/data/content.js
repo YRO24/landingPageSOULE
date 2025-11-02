@@ -35,18 +35,33 @@ export const projectsData = [
 export const communitiesData = [
   {
     id: 1,
-    name: 'Tilal Al Ghaf',
-    logo: IMAGES.tilalLogo
+    name: 'MED BIN RASHID AL MAKTOUM CITY',
+    logo: IMAGES.logo
   },
   {
     id: 2,
-    name: 'Property Development',
-    logo: IMAGES.propertyLogo
+    name: 'PALM JUMEIRAH',
+    logo: IMAGES.palmJumeirah
   },
   {
     id: 3,
-    name: 'Palm Jumeirah',
-    logo: IMAGES.palmJumeirah
+    name: 'DUBAI HILLS ESTATE',
+    logo: IMAGES.propertyLogo
+  },
+  {
+    id: 4,
+    name: 'JUMEIRAH ISLANDS', 
+    logo: IMAGES.tilalLogo
+  },
+  {
+    id: 5,
+    name: 'SOBHA HARTLAND',
+    logo: IMAGES.original
+  },
+  {
+    id: 6,
+    name: 'ARABIAN RANCHES',
+    logo: IMAGES.logo
   }
 ];
 
