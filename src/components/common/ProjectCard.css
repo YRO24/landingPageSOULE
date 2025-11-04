@@ -123,20 +123,22 @@
 }
 
 .project-card-logo {
-  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: -5.5rem;
+  z-index: 5;
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-card-logo img {
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-card-category {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -145,10 +147,12 @@
 }
 
 .project-card-content h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 2px;
   margin-bottom: 1rem;
+  z-index: 15;
+  position: relative;
 }
 
 .project-card-content p {
