@@ -13,9 +13,20 @@ const CustomCursor = () => {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    // Check if hovering over Communities or Contact sections
+    // Check if hovering over light sections or dark overlays
     const isLightSection = (element) => {
       if (!element) return false;
+      
+      // Check for dark overlays (should show white cursor)
+      const darkSelectors = [
+        '.projects-overlay.overlay-open',
+        '.overlay-content'
+      ];
+      
+      for (const selector of darkSelectors) {
+        if (element.matches && element.matches(selector)) return true;
+        if (element.closest && element.closest(selector)) return true;
+      }
       
       // Check if element or its parents are Communities or Contact sections
       const lightSelectors = [

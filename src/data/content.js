@@ -69,26 +69,26 @@ export const servicesData = [
   {
     id: 1,
     title: 'Architectural Visualisation',
-    description: 'We offer the acclaimed design of your upcoming project, along with the photorealistic images. We also assist you with technical details, project deadlines, ensuring quality potential at every stage of build and lift-off.',
-    applications: 'Competitions, new constructions, real conversions, luxury interiors.'
+    description: 'We translate approved designs into reality with a network of master craftsmen, site specialists, and project managers, ensuring quality and control at every stage of build and fit-out.',
+    applications: 'Villa renovations, new constructions, luxury detailing.'
   },
   {
     id: 2,
     title: 'Interior Styling & Design',
-    description: 'Transforming interior spaces to balance functionality with refined aesthetics. We tailor our conceptual designs to individual taste, lifestyle, and legacy. Every detail, from furniture to lighting, is curated with precision.',
-    applications: 'Turnkey sites, concept homes, statement properties.'
+    description: 'From bespoke layouts to handpicked finishes, we curate interiors that speak to our clients\' taste, lifestyle, and legacy. Every detail, from furniture to lighting, is chosen with purpose.',
+    applications: 'Turnkey villas, concept homes, investment properties.'
   },
   {
     id: 3,
     title: 'High-End Project Execution',
-    description: 'We translate approved designs into reality with a network of premier craftsmen. Our end-to-end coordination ensures seamless builds that elevate every stage of build and lift-off.',
-    applications: 'Villas, penthouses, new constructions, luxury refitting.'
+    description: 'We translate approved designs into reality with a network of master craftsmen, site specialists, and project managers, ensuring quality and control at every stage of build and fit-out.',
+    applications: 'Villa renovations, new constructions, luxury detailing.'
   },
   {
     id: 4,
     title: 'Landscape Design',
-    description: 'We bring intricate into architecture — designing gardens, courtyards, terraces, and open-air spaces that honor sustainability and visual drama.',
-    applications: 'Pool areas, driveways, open-air volumetrics.'
+    description: 'We integrate nature into architecture—designing gardens, courtyards, terraces, and outdoor features that amplify the experience of space.',
+    applications: 'Pool areas, driveways, open-air lounges, villa entires.'
   }
 ];
 
@@ -113,19 +113,19 @@ export const coreValues = [
     description: 'Every space starts with intention and ends with harmony.'
   },
   {
-    title: 'Craft with Integrity',
-    description: 'No shortcuts. No compromises.'
-  },
-  {
     title: 'Innovative Visualisation',
     description: 'We help clients see their space before it\'s built.'
   },
   {
     title: 'Client-Centered Vision',
-    description: 'We build relationships, not just spaces.'
+    description: 'We build relationships, not just residences.'
+  },
+  {
+    title: 'Craft with Integrity',
+    description: 'No shortcuts. No compromises.'
   },
   {
     title: 'Elegance in Execution',
-    description: 'From drawings to delivery, beauty in everything.'
+    description: 'From drawings to delivery, detail is everything.'
   }
 ];

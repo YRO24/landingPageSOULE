@@ -11,10 +11,7 @@ const Portfolio = () => {
   
   return (
     <div className="portfolio-page">
-      {/* Hero */}
-      <section className="portfolio-hero">
-        <h1>Project Page</h1>
-      </section>
+
       
       {/* Filter Navigation */}
       <nav className="portfolio-nav">

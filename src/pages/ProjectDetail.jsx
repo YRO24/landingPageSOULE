@@ -11,41 +11,51 @@ const ProjectDetail = () => {
   return (
     <div className="project-detail-page">
       {/* Hero with Project Title */}
-      <section className="project-detail-hero" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${project.images[0]})` }}>
-        <div className="project-title-container">
+      <section className="project-detail-hero" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${project.images[0]})` }}>
+        <div className="project-hero-content">
           <h1>{project.title}</h1>
-          <p>{project.description}</p>
-        </div>
-      </section>
-      
-      {/* Project Details */}
-      <section className="project-details">
-        <div className="detail-item">
-          <strong>LOCATION:</strong> {project.location}
-        </div>
-        <div className="detail-item">
-          <strong>PROJECT TYPE:</strong> {project.type}
-        </div>
-        <div className="detail-item">
-          <strong>COMPLETION YEAR:</strong> {project.completionYear}
-        </div>
-        <div className="detail-item">
-          <strong>PLOT AREA:</strong> {project.plotArea}
+          <div className="project-hero-description">
+            <p>{project.description}</p>
+          </div>
+          
+          {/* Project Info Grid */}
+          <div className="project-info-grid">
+            <div className="info-item">
+              <span className="info-label">LOCATION:</span>
+              <span className="info-value">{project.location}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">PROJECT TYPE:</span>
+              <span className="info-value">{project.type}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">COMPLETION YEAR:</span>
+              <span className="info-value">{project.completionYear}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">PLOT AREA:</span>
+              <span className="info-value">{project.plotArea}</span>
+            </div>
+          </div>
         </div>
       </section>
       
       {/* Challenge & Solution */}
-      <section className="challenge-solution">
-        <div className="challenge-solution-grid">
-          <div className="challenge">
-            <h3>CHALLENGE</h3>
-            <p>{project.challenge}</p>
+      <section className="project-details-section">
+        <div className="project-details-grid">
+          <div className="challenge-solution">
+            <div className="challenge-block">
+              <h3>CHALLENGE:</h3>
+              <p>{project.challenge}</p>
+            </div>
             
-            <h3 style={{ marginTop: '2rem' }}>SOLUTION:</h3>
-            <p>{project.solution}</p>
+            <div className="solution-block">
+              <h3>SOLUTION:</h3>
+              <p>{project.solution}</p>
+            </div>
           </div>
           
-          <div className="technologies">
+          <div className="technologies-materials">
             <h3>TECHNOLOGIES/MATERIALS USED:</h3>
             <ul>
               {project.technologies.map((tech, index) => (

@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IMAGES } from '../../utils/constants';
+import ProjectsOverlay from './ProjectsOverlay';
 import './Navbar.css';
 
 const Navbar = () => {
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [showProjectsOverlay, setShowProjectsOverlay] = useState(false);
   const hideTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -20,21 +23,28 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    // Set initial dark theme based on route
+    const currentPath = location.pathname + location.search;
+    const shouldStartDark = currentPath.includes('portfolio?category=project-execution') || 
+                           currentPath.includes('/portfolio') && location.search.includes('category=project-execution');
+    setIsDarkTheme(shouldStartDark);
+  }, [location]);
+
+  useEffect(() => {
     // Detect light background sections and communities section
     const handleScroll = () => {
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section');
-      const navbarHeight = 200; // Increased height to ensure proper detection
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section');
+      const navbarHeight = 80; // Reduced height for more precise detection
       
       let isOverLightSection = false;
       
       lightSections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        // Check if navbar overlaps with light section (more generous detection)
-        if (rect.top < navbarHeight && rect.bottom > -50) {
+        // Check if navbar overlaps with light section (more precise detection)
+        if (rect.top < navbarHeight && rect.bottom > 0) {
           isOverLightSection = true;
         }
       });
-      
       setIsDarkTheme(isOverLightSection);
     };
 
@@ -73,6 +83,15 @@ const Navbar = () => {
     }, 2000); // 2 second delay before hiding after mouse leaves
   };
 
+  const handleProjectsClick = (e) => {
+    e.preventDefault();
+    setShowProjectsOverlay(true);
+  };
+
+  const handleCloseOverlay = () => {
+    setShowProjectsOverlay(false);
+  };
+
   return (
     <>
       <div 
@@ -85,9 +104,12 @@ const Navbar = () => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="nav-container">
-          <Link to="/" className="logo logo-text">
-            <div className="logo-main">SOULE</div>
-            <div className="logo-sub">STUDIO</div>
+          <Link to="/" className="logo">
+            <img 
+              src={isDarkTheme ? IMAGES.souleLogoNavbarLeftDark : IMAGES.souleLogoNavbarLeft} 
+              alt="Soule Studio" 
+              className="logo-image"
+            />
           </Link>
           
           <div className="nav-center">
@@ -100,11 +122,24 @@ const Navbar = () => {
           
           <ul className="nav-links">
             <li><Link to="/about">ABOUT US</Link></li>
-            <li><Link to="/portfolio">PROJECTS</Link></li>
+            <li>
+              <button 
+                className="projects-trigger"
+                onClick={handleProjectsClick}
+              >
+                PROJECTS
+              </button>
+            </li>
             <li><Link to="/contact">CONTACT</Link></li>
           </ul>
         </div>
       </nav>
+      
+      <ProjectsOverlay 
+        isOpen={showProjectsOverlay}
+        onClose={handleCloseOverlay}
+        isDarkTheme={isDarkTheme}
+      />
     </>
   );
 };

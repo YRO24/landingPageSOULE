@@ -4,6 +4,7 @@ export const IMAGES = {
   souleLogo: '/assets/images/PNG/Soule%20Final%20logo%20All-05.png',
   souleLogoWhite: '/assets/images/PNG/Soule%20Final%20logo%20All-11.png',
   souleLogoNavbarLeft: '/assets/images/PNG/Soule%20Final%20logo%20All-13.png',
+  souleLogoNavbarLeftDark: '/assets/images/PNG/Soule%20Final%20logo%20All-10.png',
   souleLogoNavbarCenter: '/assets/images/PNG/Soule%20Final%20logo%20All-14.png',
   souleLogoNavbarCenterDark: '/assets/images/PNG/Soule%20Final%20logo%20All-11.png',
   hero: '/assets/images/211f3c95044295.5fb63d2d2e82c.jpg',

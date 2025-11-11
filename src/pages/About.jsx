@@ -8,23 +8,25 @@ const About = () => {
     <div className="about-page">
       {/* Hero Section */}
       <section className="about-hero">
-        <div className="about-hero-overlay"></div>
         <div className="about-hero-content">
-          <p>
-            At Soule Studio, we redefine living through thoughtful design. 
-            Specializing in high-end residential interiors and architectural visualization, 
-            we craft spaces that fuse emotion, function, and form—designed with soul, 
-            built with precision. Every project tells a story, and we're here to help tell yours beautifully.
-          </p>
-          <p>
-            From possibilities like to-the-moment urban residences, our work is rooted 
-            in a philosophy that great design changes the way we live and feel. Our team 
-            isn't just building spaces—we're building experiences that last a lifetime.
-          </p>
-          <p>
-            With a commitment to quality, depth, and dedication, we design spaces 
-            that grow not only with precision but also longevity.
-          </p>
+          <h1>ABOUT US</h1>
+          <div className="about-text-content">
+            <p>
+              At Soule Studio, we redefine luxury living through thoughtful design, 
+              immersive visualisation, and expert execution. Founded in 2023 with a vision to 
+              harmonize soul and structure, we serve discerning homeowners, architects, 
+              and developers across the UAE and beyond.
+            </p>
+            <p>
+              From expansive villas to ultra-modern urban residences, our work is rooted 
+              in multidisciplinary expertise blending architecture, interior design, landscape 
+              planning, and styling into one seamless journey.
+            </p>
+            <p>
+              With a commitment to detail, depth, and distinction, we design spaces 
+              that speak not only to form and function, but also to feeling.
+            </p>
+          </div>
         </div>
       </section>
       
@@ -51,18 +53,17 @@ const About = () => {
             <p>
               To elevate luxury living through integrated design 
               solutions that fuse emotion, function, and form—
-              designed with soul, built with precision.
+              crafted with integrity and executed with excellence.
             </p>
           </div>
           <div className="divider"></div>
           <div className="vision">
             <h2>VISION</h2>
             <p>
-              To be UAE's most coveted studio for 
+              To be the UAE's most trusted studio for 
               luxury residential design, known for 
-              visualizing the invisible—transforming 
-              imagination and ambition into real, 
-              experiences, and projection- driven delivery.
+              timeless aesthetics, immersive client 
+              experiences, and precision-driven delivery.
             </p>
           </div>
         </div>
