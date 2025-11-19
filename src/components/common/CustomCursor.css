@@ -6,8 +6,8 @@
 /* Custom Cursor with Logo - Optimized for performance */
 .custom-cursor {
   position: fixed;
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   pointer-events: none;
   left: 0;
   top: 0;

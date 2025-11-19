@@ -18,12 +18,12 @@ export const projectsData = [
       '3D visualizations (pre-construction)'
     ],
     images: [
-      IMAGES.hero,
+      IMAGES.kalpesh5,
       IMAGES.bedroom4,
       IMAGES.bedroom5,
       IMAGES.guestWalkIn,
       IMAGES.kalpesh4,
-      IMAGES.kalpesh5,
+      IMAGES.hero,
       IMAGES.kalpesh6,
       IMAGES.office1
     ],

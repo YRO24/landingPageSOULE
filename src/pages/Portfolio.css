@@ -84,11 +84,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s;
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.1);
 }
 
 .portfolio-overlay {
