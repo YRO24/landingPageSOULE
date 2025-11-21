@@ -10,76 +10,97 @@ const ProjectDetail = () => {
   
   return (
     <div className="project-detail-page">
-      {/* Hero with Project Title */}
-      <section className="project-detail-hero" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${project.images[0]})` }}>
-        <div className="project-hero-content">
-          <h1>{project.title}</h1>
-          <div className="project-hero-description">
-            <p>{project.description}</p>
-          </div>
-          
-          {/* Project Info Grid */}
-          <div className="project-info-grid">
-            <div className="info-item">
-              <span className="info-label">LOCATION:</span>
-              <span className="info-value">{project.location}</span>
-            </div>
-            <div className="info-item">
-              <span className="info-label">PROJECT TYPE:</span>
-              <span className="info-value">{project.type}</span>
-            </div>
-            <div className="info-item">
-              <span className="info-label">COMPLETION YEAR:</span>
-              <span className="info-value">{project.completionYear}</span>
-            </div>
-            <div className="info-item">
-              <span className="info-label">PLOT AREA:</span>
-              <span className="info-value">{project.plotArea}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Challenge & Solution */}
-      <section className="project-details-section">
-        <div className="project-details-grid">
-          <div className="challenge-solution">
-            <div className="challenge-block">
-              <h3>CHALLENGE:</h3>
-              <p>{project.challenge}</p>
+      {/* Enhanced Hero Section */}
+      <section className="enhanced-project-hero" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${project.images[0]})` }}>
+        <div className="hero-overlay">
+          <div className="hero-content-wrapper">
+            <div className="project-title-section">
+              <h1 className="project-main-title">{project.title}</h1>
+              <p className="project-subtitle">{project.description}</p>
             </div>
             
-            <div className="solution-block">
-              <h3>SOLUTION:</h3>
-              <p>{project.solution}</p>
+            {/* Project Details Grid */}
+            <div className="project-specs-grid">
+              <div className="spec-row">
+                <span className="spec-label">LOCATION:</span>
+                <span className="spec-value">{project.location}</span>
+              </div>
+              <div className="spec-row">
+                <span className="spec-label">PROJECT TYPE:</span>
+                <span className="spec-value">{project.type}</span>
+              </div>
+              <div className="spec-row">
+                <span className="spec-label">COMPLETION YEAR:</span>
+                <span className="spec-value">{project.completionYear}</span>
+              </div>
+              <div className="spec-row">
+                <span className="spec-label">PLOT AREA:</span>
+                <span className="spec-value">{project.plotArea}</span>
+              </div>
             </div>
-          </div>
-          
-          <div className="technologies-materials">
-            <h3>TECHNOLOGIES/MATERIALS USED:</h3>
-            <ul>
-              {project.technologies.map((tech, index) => (
-                <li key={index}>{tech}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
       
-      {/* Image Placeholders Grid - 2x2 */}
-      <section className="project-placeholders">
-        <div className="placeholders-grid">
-          {[1, 2, 3, 4].map((num) => (
-            <div key={num} className="placeholder-item">
-              {project.images[num] ? (
-                <img src={project.images[num]} alt={`${project.title} view ${num}`} />
-              ) : (
-                <div className="placeholder-box"></div>
-              )}
+      {/* Project Details Content Section */}
+      <section className="project-content-section">
+        <div className="content-container">
+          <div className="content-grid">
+            {/* Left Column - Challenge & Solution */}
+            <div className="content-left">
+              <div className="detail-block">
+                <h3 className="detail-title">CHALLENGE:</h3>
+                <p className="detail-text">{project.challenge}</p>
+              </div>
+              
+              <div className="detail-block">
+                <h3 className="detail-title">SOLUTION:</h3>
+                <p className="detail-text">{project.solution}</p>
+              </div>
             </div>
-          ))}
+            
+            {/* Right Column - Technologies */}
+            <div className="content-right">
+              <div className="detail-block">
+                <h3 className="detail-title">TECHNOLOGIES/MATERIALS USED:</h3>
+                <ul className="technologies-list">
+                  {project.technologies.map((tech, index) => (
+                    <li key={index} className="tech-item">{tech}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+      
+      {/* Project Gallery Section */}
+      <section className="project-gallery-section">
+        <div className="gallery-container">
+          <div className="gallery-grid">
+            {project.images.slice(1, 5).map((image, index) => (
+              <div key={index} className="gallery-item">
+                <img src={image} alt={`${project.title} view ${index + 1}`} className="gallery-image" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Additional Gallery if more images exist */}
+      {project.images.length > 5 && (
+        <section className="extended-gallery-section">
+          <div className="gallery-container">
+            <div className="extended-gallery-grid">
+              {project.images.slice(5).map((image, index) => (
+                <div key={index} className="extended-gallery-item">
+                  <img src={image} alt={`${project.title} detail ${index + 1}`} className="extended-gallery-image" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       
       <Communities />
       

@@ -7,14 +7,19 @@ const ProjectsOverlay = ({ isOpen, onClose, isDarkTheme }) => {
     if (isOpen) {
       // Disable body scroll when overlay is open
       document.body.style.overflow = 'hidden';
+      // Dispatch event for cursor change
+      window.dispatchEvent(new CustomEvent('projectsOverlayOpen'));
     } else {
       // Re-enable body scroll when overlay is closed
       document.body.style.overflow = 'unset';
+      // Dispatch event for cursor change
+      window.dispatchEvent(new CustomEvent('projectsOverlayClose'));
     }
 
     // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'unset';
+      window.dispatchEvent(new CustomEvent('projectsOverlayClose'));
     };
   }, [isOpen]);
 

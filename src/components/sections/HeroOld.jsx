@@ -1,20 +1,12 @@
-"use client";
-
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { AnimatePresence, motion, usePresenceData } from "motion/react";
 import './Hero.css';
 import Button from '../common/Button';
-
-const wrap = (min, max, v) => {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
 
 const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityName = '', slideImages = [], onScrollLockChange }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrollLocked, setIsScrollLocked] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
-  const [direction, setDirection] = useState(1);
+  const [scrollDirection, setScrollDirection] = useState('down');
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Ensure we have valid images
@@ -22,7 +14,7 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
   const totalSlides = images.length;
   const heroRef = useRef(null);
   const lastWheelTime = useRef(0);
-  const isScrolling = useRef(false);
+  const wheelTimeout = useRef(null);
 
   // Handle image load errors
   const handleImageError = useCallback(() => {
@@ -40,25 +32,14 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
     onScrollLockChange?.(true);
   }, [hasSlider, images.length, onScrollLockChange]);
 
-  // Manage body overflow when scroll is locked and hide scrollbar
+  // Manage body overflow when scroll is locked
   useEffect(() => {
     if (isScrollLocked) {
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100vh';
-      // Hide scrollbar globally when hero is active
-      document.documentElement.style.scrollbarWidth = 'none';
-      document.documentElement.style.msOverflowStyle = 'none';
-      const style = document.createElement('style');
-      style.textContent = '::-webkit-scrollbar { display: none; }';
-      document.head.appendChild(style);
     } else {
       document.body.style.overflow = '';
       document.body.style.height = '';
-      // Restore scrollbar
-      document.documentElement.style.scrollbarWidth = '';
-      document.documentElement.style.msOverflowStyle = '';
-      const existingStyle = document.querySelector('style[data-scrollbar="hidden"]');
-      if (existingStyle) existingStyle.remove();
     }
     
     // Notify parent of scroll lock state change
@@ -68,33 +49,31 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
     return () => {
       document.body.style.overflow = '';
       document.body.style.height = '';
-      document.documentElement.style.scrollbarWidth = '';
-      document.documentElement.style.msOverflowStyle = '';
     };
   }, [isScrollLocked, onScrollLockChange]);
 
-  const handleSlideChange = useCallback((newDirection) => {
-    const nextSlide = wrap(0, totalSlides, currentSlide + newDirection);
-    
-    // Start text transition
-    setIsTransitioning(true);
-    
-    setCurrentSlide(nextSlide);
-    setDirection(newDirection);
-    
-    // End text transition after slide animation completes
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600); // Match spring animation duration
-    
-    // If we've reached the last slide, unlock scroll after a short delay
-    if (nextSlide === totalSlides - 1 && newDirection > 0) {
+  const handleSlideChange = useCallback((newSlide, direction = 'down') => {
+    if (newSlide >= 0 && newSlide < totalSlides && !isTransitioning) {
+      setIsTransitioning(true);
+      setScrollDirection(direction);
+      
+      // Immediate update for proper staging
+      setCurrentSlide(newSlide);
+      
+      // End transition after animation completes
       setTimeout(() => {
-        setIsScrollLocked(false);
-        onScrollLockChange?.(false);
-      }, 800);
+        setIsTransitioning(false);
+      }, 1250); // Match CSS animation duration (1.2s + buffer)
+      
+      // If we've reached the last slide, unlock scroll after a short delay
+      if (newSlide === totalSlides - 1) {
+        setTimeout(() => {
+          setIsScrollLocked(false);
+          onScrollLockChange?.(false);
+        }, 1500); // Increased delay to account for longer animation
+      }
     }
-  }, [currentSlide, totalSlides, onScrollLockChange]);
+  }, [totalSlides, onScrollLockChange, isTransitioning]);
 
   useEffect(() => {
     if (!hasSlider || !isScrollLocked || totalSlides <= 1) return;
@@ -102,12 +81,17 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
     const handleWheel = (e) => {
       const now = Date.now();
       
-      // Prevent multiple triggers during the same scroll gesture
-      if (isScrolling.current || now - lastWheelTime.current < 1200) {
-        e.preventDefault();
-        return;
+      // Optimized throttling for smoother sliding
+      if (now - lastWheelTime.current < 600) return;
+      
+      lastWheelTime.current = now;
+      
+      // Clear existing timeout
+      if (wheelTimeout.current) {
+        clearTimeout(wheelTimeout.current);
       }
       
+      // Only prevent default if we're going to handle the scroll
       const scrollingDown = e.deltaY > 0;
       const scrollingUp = e.deltaY < 0;
       
@@ -120,75 +104,48 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
       if (shouldHandle) {
         e.preventDefault();
         e.stopPropagation();
-        
-        // Set scrolling flag to prevent multiple triggers
-        isScrolling.current = true;
-        lastWheelTime.current = now;
-        
+      }
+
+      wheelTimeout.current = setTimeout(() => {
         if (scrollingDown && currentSlide < totalSlides - 1) {
-          handleSlideChange(1);
+          handleSlideChange(currentSlide + 1, 'down');
         } else if (scrollingUp && currentSlide > 0) {
-          handleSlideChange(-1);
+          handleSlideChange(currentSlide - 1, 'up');
         } else if (scrollingDown && currentSlide === totalSlides - 1) {
+          // On last slide, unlock scroll with longer delay
           setTimeout(() => {
             setIsScrollLocked(false);
             onScrollLockChange?.(false);
-          }, 300);
+          }, 800);
         }
-        
-        // Reset scrolling flag after animation completes
-        setTimeout(() => {
-          isScrolling.current = false;
-        }, 1000);
-      }
+      }, 200);
     };
 
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowDown' && currentSlide < totalSlides - 1) {
-        e.preventDefault();
-        handleSlideChange(1);
-      } else if (e.key === 'ArrowUp' && currentSlide > 0) {
-        e.preventDefault();
-        handleSlideChange(-1);
-      } else if (e.key === 'ArrowDown' && currentSlide === totalSlides - 1) {
-        setTimeout(() => {
-          setIsScrollLocked(false);
-          onScrollLockChange?.(false);
-        }, 300);
-      }
-    };
-
+    // Add wheel listener to the hero element specifically
     const heroElement = heroRef.current;
     if (heroElement) {
       heroElement.addEventListener('wheel', handleWheel, { passive: false });
-      document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       if (heroElement) {
         heroElement.removeEventListener('wheel', handleWheel);
       }
-      document.removeEventListener('keydown', handleKeyDown);
+      if (wheelTimeout.current) {
+        clearTimeout(wheelTimeout.current);
+      }
     };
   }, [hasSlider, isScrollLocked, currentSlide, totalSlides, handleSlideChange]);
 
+  const currentBackground = images[currentSlide] || backgroundImage;
+
   const handleDotClick = useCallback((index) => {
-    const newDirection = index > currentSlide ? 1 : -1;
-    
-    // Start text transition
-    setIsTransitioning(true);
-    
-    setCurrentSlide(index);
-    setDirection(newDirection);
-    
-    // End text transition after slide animation completes
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600);
-  }, [currentSlide]);
+    const direction = index > currentSlide ? 'down' : 'up';
+    handleSlideChange(index, direction);
+  }, [handleSlideChange, currentSlide]);
 
   // Don't render if no images available
-  if (!images.length && !imageLoadError) {
+  if (!currentBackground && !imageLoadError) {
     return (
       <section className="hero" style={{ backgroundColor: '#333' }}>
         <div className="hero-content">
@@ -203,29 +160,31 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
   return (
     <section 
       ref={heroRef}
-      className={`hero ${isScrollLocked ? 'scroll-locked' : ''}`}
+      className={`hero ${isScrollLocked ? 'scroll-locked' : ''} ${isTransitioning ? `transitioning-${scrollDirection}` : ''}`}
     >
+      {/* Background slides container */}
       <div className="hero-slides-container">
-        <AnimatePresence 
-          custom={direction} 
-          initial={false} 
-          mode="wait"
-        >
-          <HeroSlide 
-            key={currentSlide}
-            image={images[currentSlide]}
-            imageLoadError={imageLoadError}
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`hero-slide ${
+              index === currentSlide ? 'active' : ''
+            } ${isTransitioning && index === currentSlide ? `slide-${scrollDirection}` : ''}`}
+            style={{
+              backgroundImage: imageLoadError
+                ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`
+            }}
           />
-        </AnimatePresence>
+        ))}
       </div>
-      
       {communityName && (
         <div className="hero-community-name">
           {communityName}
         </div>
       )}
       
-      <div className={`hero-content ${isTransitioning ? 'transitioning' : ''}`}>
+      <div className="hero-content">
         <h1>{title}</h1>
         {subtitle && <h2>{subtitle}</h2>}
         <Button variant="primary">DISCOVER NOW</Button>
@@ -277,46 +236,6 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
         />
       ))}
     </section>
-  );
-};
-
-const HeroSlide = ({ image, imageLoadError }) => {
-  const direction = usePresenceData();
-  
-  return (
-    <motion.div
-      custom={direction}
-      initial={{ 
-        opacity: 0, 
-        x: direction * 100 
-      }}
-      animate={{
-        opacity: 1,
-        x: 0,
-        transition: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          mass: 0.5,
-        },
-      }}
-      exit={{ 
-        opacity: 0, 
-        x: direction * -100,
-        transition: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          mass: 0.5,
-        }
-      }}
-      className="hero-slide-motion"
-      style={{
-        backgroundImage: imageLoadError
-          ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-          : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`
-      }}
-    />
   );
 };
 
