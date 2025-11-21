@@ -232,18 +232,60 @@
 
 @media (max-width: 768px) {
   .about-content {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
   
   .about-header h2 {
     font-size: 3rem;
   }
   
+  .about-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .about-text-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
   .about-text-columns p {
     font-size: 0.95rem;
   }
   
+  .three-cards-section {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+  }
+  
   .category-item {
-    height: 400px;
+    height: 60vh;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-content {
+    padding: 0 1rem;
+  }
+  
+  .about-header h2 {
+    font-size: 2.5rem;
+  }
+  
+  .about-text-columns p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  
+  .category-item {
+    height: 50vh;
+    min-height: 350px;
+  }
+  
+  .category-item h3 {
+    font-size: 1.2rem;
   }
 }

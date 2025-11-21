@@ -247,12 +247,77 @@
 }
 
 @media (max-width: 768px) {
+  .about-page {
+    padding-top: 70px;
+  }
+  
+  .about-hero {
+    padding: 3rem 1.5rem;
+    min-height: 70vh;
+  }
+  
+  .about-hero-content h1 {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 2.5rem;
+  }
+  
+  .about-hero-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
   .values-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
+  .about-page {
+    padding-top: 60px;
+  }
+  
+  .about-hero {
+    padding: 2rem 1rem;
+    min-height: 60vh;
+  }
+  
+  .about-hero-content h1 {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+  }
+  
+  .about-hero-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .team-section,
+  .services-section,
+  .core-values {
+    padding: 3rem 0;
+  }
+  
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .divider {
+    display: none;
+  }
+  
   .values-grid {
     grid-template-columns: 1fr;
   }
