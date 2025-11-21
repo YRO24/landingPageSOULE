@@ -5,8 +5,12 @@
 .portfolio-hero {
   background: #555;
   color: white;
-  text-align: center;
   padding: 3rem 0;
+  /* Align with navbar positioning */
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: 7rem; /* Match navbar logo alignment */
+  text-align: left;
 }
 
 .portfolio-hero h1 {
@@ -23,12 +27,15 @@
 }
 
 .portfolio-nav ul {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 6rem;
   display: flex;
   gap: 3rem;
   list-style: none;
+  /* Align with navbar logo positioning */
+  padding-left: 8.8rem; /* Fine-tuned alignment */
+  justify-content: flex-start;
 }
 
 .portfolio-nav button {
@@ -77,6 +84,9 @@
   overflow: hidden;
   cursor: pointer;
   border: 0.5px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .portfolio-item img {
@@ -120,23 +130,45 @@
 }
 
 @media (max-width: 768px) {
+  .portfolio-page {
+    padding-top: 60px;
+  }
+  
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .portfolio-nav {
+    padding: 0 1rem;
   }
   
   .portfolio-nav ul {
     gap: 1.5rem;
     overflow-x: auto;
+    padding: 0 1rem;
   }
   
   .portfolio-nav button {
     white-space: nowrap;
     font-size: 0.8rem;
+    padding: 1rem 0;
   }
 }
 
 @media (max-width: 480px) {
+  .portfolio-page {
+    padding-top: 50px;
+  }
+  
   .portfolio-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .portfolio-nav ul {
+    gap: 1rem;
+  }
+  
+  .portfolio-nav button {
+    font-size: 0.7rem;
   }
 }

@@ -16,28 +16,14 @@
   opacity: 1;
 }
 
-.navbar-hidden {
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-}
 
-.navbar-trigger-area {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  z-index: 999;
-  pointer-events: all;
-}
 
 .nav-container {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 6rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   position: relative;
   height: 100%;
@@ -51,6 +37,8 @@
   flex-direction: column;
   align-items: flex-start;
   line-height: 1;
+  position: absolute;
+  left: 1rem;
 }
 
 .logo:hover {
@@ -130,9 +118,10 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 3.5rem;
+  gap: 3rem;
   margin: 0;
   padding: 0;
+  margin-right: 0rem;
 }
 
 .nav-links a {
@@ -207,33 +196,83 @@
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    gap: 1.5rem;
-    font-size: 0.8rem;
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 0 2rem;
   }
   
   .logo {
-    font-size: 1.5rem;
+    left: 1rem;
+  }
+  
+  .nav-links {
+    gap: 2rem;
+    margin-right: 0.25rem;
+  }
+  
+  .logo-image {
+    height: 150px;
   }
   
   .center-logo {
-    height: 30px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 5rem;
+    padding-top: 1rem;
   }
   
-  .projects-dropdown {
-    min-width: 90vw;
-    left: 0;
-    transform: translateX(-10px) translateY(20px);
-    padding: 1rem;
+  .nav-container {
+    padding: 0 1rem;
   }
   
-  .dropdown-visible {
-    transform: translateX(-10px) translateY(10px);
+  .logo {
+    left: 0.5rem;
   }
   
-  .dropdown-content {
-    grid-template-columns: 1fr;
+  .nav-links {
     gap: 1.5rem;
+    font-size: 0.8rem;
+    margin-right: 0.125rem;
+  }
+  
+  .logo-image {
+    height: 80px;
+  }
+  
+  .center-logo {
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: 4rem;
+    padding-top: 0.5rem;
+  }
+  
+  .nav-container {
+    padding: 0 0.5rem;
+  }
+  
+  .logo {
+    left: 0.25rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.7rem;
+    margin-right: 0.125rem;
+  }
+  
+  .logo-image {
+    height: 60px;
+  }
+  
+  .center-logo {
+    height: 40px;
   }
 }

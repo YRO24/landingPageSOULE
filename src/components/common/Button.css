@@ -1,8 +1,8 @@
 .btn {
-  padding: 0.7rem 2rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  font-weight: 400;
+  padding: 1rem 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  font-weight: 500;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -11,7 +11,8 @@
   font-family: inherit;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 .btn-content {
@@ -31,13 +32,13 @@
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn:active {
   transform: translateY(0);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover::before {
@@ -45,17 +46,20 @@
 }
 
 .btn-primary {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   color: white;
-  border: 0.5px solid rgba(255, 255, 255, 0.6);
+  border: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
 }
 
 .btn-primary::before {
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
-  color: black;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .btn-dark {

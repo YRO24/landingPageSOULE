@@ -6,34 +6,25 @@ import './Navbar.css';
 
 const Navbar = () => {
   const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [showProjectsOverlay, setShowProjectsOverlay] = useState(false);
-  const hideTimeoutRef = useRef(null);
 
-  useEffect(() => {
-    // Start hide timer on mount
-    hideTimeoutRef.current = setTimeout(() => {
-      setIsVisible(false);
-    }, 4000); // 4 second delay before hiding (slightly longer for better UX)
 
-    return () => {
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-    };
-  }, []);
 
   useEffect(() => {
     // Set initial dark theme based on route
     const currentPath = location.pathname + location.search;
-    const shouldStartDark = currentPath.includes('portfolio?category=project-execution') || 
-                           currentPath.includes('/portfolio') && location.search.includes('category=project-execution');
+    const shouldStartDark = currentPath.includes('/portfolio') || 
+                           currentPath.includes('/project/') ||
+                           currentPath.includes('portfolio?category=project-execution');
     setIsDarkTheme(shouldStartDark);
   }, [location]);
 
   useEffect(() => {
     // Detect light background sections and communities section
     const handleScroll = () => {
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section');
+      // Define light sections for all pages including project detail pages
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section, .project-content-section, .project-gallery-section, .extended-gallery-section');
       const navbarHeight = 80; // Reduced height for more precise detection
       
       let isOverLightSection = false;
@@ -66,22 +57,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
-  const handleMouseEnter = () => {
-    if (hideTimeoutRef.current) {
-      clearTimeout(hideTimeoutRef.current);
-      hideTimeoutRef.current = null;
-    }
-    setIsVisible(true);
-  };
 
-  const handleMouseLeave = () => {
-    if (hideTimeoutRef.current) {
-      clearTimeout(hideTimeoutRef.current);
-    }
-    hideTimeoutRef.current = setTimeout(() => {
-      setIsVisible(false);
-    }, 2000); // 2 second delay before hiding after mouse leaves
-  };
 
   const handleProjectsClick = (e) => {
     e.preventDefault();
@@ -94,14 +70,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div 
-        className="navbar-trigger-area"
-        onMouseEnter={handleMouseEnter}
-      />
       <nav 
-        className={`navbar ${isVisible ? 'navbar-visible' : 'navbar-hidden'} ${isDarkTheme ? 'dark-theme' : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        className={`navbar navbar-visible ${isDarkTheme ? 'dark-theme' : ''}`}
       >
         <div className="nav-container">
           <Link to="/" className="logo">

@@ -1,8 +1,5 @@
 .hero {
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,9 +8,9 @@
   text-align: center;
   padding-top: 80px;
   overflow: hidden;
-  transition: background-image 1.2s ease-in-out;
 }
 
+/* Hide scrollbar globally when hero is active */
 .hero.scroll-locked {
   position: fixed;
   top: 0;
@@ -21,6 +18,32 @@
   right: 0;
   width: 100%;
   z-index: 50;
+}
+
+/* Ensure hero can receive focus for keyboard events */
+.hero:focus {
+  outline: none;
+}
+
+.hero-slides-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-slide-motion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform, opacity;
 }
 
 .hero-community-name {
@@ -34,7 +57,7 @@
   color: rgba(255, 255, 255, 0.08);
   text-transform: uppercase;
   white-space: nowrap;
-  z-index: 1;
+  z-index: 5;
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -42,7 +65,18 @@
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  transition: color 0.3s ease-in-out;
+}
+
+.hero-content.transitioning {
+  color: #000000;
+}
+
+.hero-content.transitioning h1,
+.hero-content.transitioning h2 {
+  color: #000000;
+  transition: color 0.3s ease-in-out;
 }
 
 .hero-icon {
@@ -62,6 +96,7 @@
   letter-spacing: 0.01rem;
   animation: fadeInUp 1s ease-out;
   line-height: 1.15;
+  transition: color 0.3s ease-in-out;
 }
 
 .hero-content h2 {
@@ -72,6 +107,7 @@
   letter-spacing: 0.01em;
   animation: fadeInUp 1s ease-out 0.2s both;
   line-height: 1.15;
+  transition: color 0.3s ease-in-out;
 }
 
 .hero-content .btn {
@@ -87,6 +123,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  z-index: 15;
 }
 
 .scroll-instruction {
@@ -133,8 +170,8 @@
 
 .whatsapp-icon {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   width: 60px;
   height: 60px;
   background: rgba(37, 211, 102, 0.9);
@@ -144,7 +181,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 1000;
+  z-index: 10000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   animation: fadeInScale 0.6s ease-out 1s both;
 }
@@ -186,12 +223,60 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 4rem;
+  }
+  
+  .hero-community-name {
+    font-size: 10vw;
+  }
+}
+
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;
+  }
+  
   .hero-content h1 {
     font-size: 2.5rem;
   }
   
   .hero-content h2 {
     font-size: 2rem;
+  }
+  
+  .hero-community-name {
+    font-size: 15vw;
+  }
+  
+  .whatsapp-icon {
+    width: 50px;
+    height: 50px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .whatsapp-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .scroll-instruction {
+    font-size: 0.7rem;
   }
 }
