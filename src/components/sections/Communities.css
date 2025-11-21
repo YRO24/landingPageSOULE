@@ -82,12 +82,34 @@
     margin-bottom: 2rem;
   }
   
-  .communities-logos {
-    gap: 2rem;
+  .communities-logos-strip {
+    gap: 3rem;
+  }
+  
+  .community-logo-item {
+    min-width: 180px;
   }
   
   .community-logo-item img {
-    max-width: 140px;
-    max-height: 60px;
+    max-width: 110px;
+    max-height: 70px;
+  }
+  
+  .community-name {
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .communities-section {
+    padding: 2.5rem 0;
+  }
+  
+  .communities-logos-strip {
+    gap: 2rem;
+  }
+  
+  .community-logo-item {
+    min-width: 150px;
   }
 }

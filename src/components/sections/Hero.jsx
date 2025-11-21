@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { AnimatePresence, motion, usePresenceData } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import './Hero.css';
 import Button from '../common/Button';
 
@@ -15,30 +15,45 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
   const [isScrollLocked, setIsScrollLocked] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
   const [direction, setDirection] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(
+    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  );
   
   // Ensure we have valid images
   const images = slideImages && slideImages.length > 0 ? slideImages.filter(Boolean) : [backgroundImage].filter(Boolean);
   const totalSlides = images.length;
+  const sliderEnabled = hasSlider && totalSlides > 1 && !isMobileView;
   const heroRef = useRef(null);
   const lastWheelTime = useRef(0);
   const isScrolling = useRef(false);
+  const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
 
   // Handle image load errors
   const handleImageError = useCallback(() => {
     setImageLoadError(true);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Initialize scroll lock state
   useEffect(() => {
-    if (!hasSlider || images.length <= 1) {
+    if (!sliderEnabled) {
       setIsScrollLocked(false);
       onScrollLockChange?.(false);
       return;
     }
     setIsScrollLocked(true);
     onScrollLockChange?.(true);
-  }, [hasSlider, images.length, onScrollLockChange]);
+  }, [sliderEnabled, onScrollLockChange]);
 
   // Manage body overflow when scroll is locked and hide scrollbar
   useEffect(() => {
@@ -48,9 +63,13 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
       // Hide scrollbar globally when hero is active
       document.documentElement.style.scrollbarWidth = 'none';
       document.documentElement.style.msOverflowStyle = 'none';
-      const style = document.createElement('style');
-      style.textContent = '::-webkit-scrollbar { display: none; }';
-      document.head.appendChild(style);
+      let style = document.querySelector('style[data-scrollbar="hidden"]');
+      if (!style) {
+        style = document.createElement('style');
+        style.setAttribute('data-scrollbar', 'hidden');
+        style.textContent = '::-webkit-scrollbar { display: none; }';
+        document.head.appendChild(style);
+      }
     } else {
       document.body.style.overflow = '';
       document.body.style.height = '';
@@ -70,76 +89,52 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
       document.body.style.height = '';
       document.documentElement.style.scrollbarWidth = '';
       document.documentElement.style.msOverflowStyle = '';
+      const existingStyle = document.querySelector('style[data-scrollbar="hidden"]');
+      if (existingStyle) existingStyle.remove();
     };
   }, [isScrollLocked, onScrollLockChange]);
 
   const handleSlideChange = useCallback((newDirection) => {
     const nextSlide = wrap(0, totalSlides, currentSlide + newDirection);
-    
-    // Start text transition
-    setIsTransitioning(true);
-    
+
     setCurrentSlide(nextSlide);
     setDirection(newDirection);
-    
-    // End text transition after slide animation completes
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600); // Match spring animation duration
-    
-    // If we've reached the last slide, unlock scroll after a short delay
-    if (nextSlide === totalSlides - 1 && newDirection > 0) {
-      setTimeout(() => {
-        setIsScrollLocked(false);
-        onScrollLockChange?.(false);
-      }, 800);
-    }
-  }, [currentSlide, totalSlides, onScrollLockChange]);
+  }, [currentSlide, totalSlides]);
 
   useEffect(() => {
-    if (!hasSlider || !isScrollLocked || totalSlides <= 1) return;
+    if (!sliderEnabled || !isScrollLocked) return;
 
     const handleWheel = (e) => {
       const now = Date.now();
-      
-      // Prevent multiple triggers during the same scroll gesture
-      if (isScrolling.current || now - lastWheelTime.current < 1200) {
-        e.preventDefault();
-        return;
-      }
-      
+
       const scrollingDown = e.deltaY > 0;
       const scrollingUp = e.deltaY < 0;
-      
-      const shouldHandle = (
-        (scrollingDown && currentSlide < totalSlides - 1) ||
-        (scrollingUp && currentSlide > 0) ||
-        (scrollingDown && currentSlide === totalSlides - 1)
-      );
-      
-      if (shouldHandle) {
+
+      if (isScrolling.current || now - lastWheelTime.current < 550) {
+        return;
+      }
+
+      if (scrollingDown && currentSlide < totalSlides - 1) {
         e.preventDefault();
         e.stopPropagation();
-        
-        // Set scrolling flag to prevent multiple triggers
         isScrolling.current = true;
         lastWheelTime.current = now;
-        
-        if (scrollingDown && currentSlide < totalSlides - 1) {
-          handleSlideChange(1);
-        } else if (scrollingUp && currentSlide > 0) {
-          handleSlideChange(-1);
-        } else if (scrollingDown && currentSlide === totalSlides - 1) {
-          setTimeout(() => {
-            setIsScrollLocked(false);
-            onScrollLockChange?.(false);
-          }, 300);
-        }
-        
-        // Reset scrolling flag after animation completes
+        handleSlideChange(1);
+      } else if (scrollingUp && currentSlide > 0) {
+        e.preventDefault();
+        e.stopPropagation();
+        isScrolling.current = true;
+        lastWheelTime.current = now;
+        handleSlideChange(-1);
+      } else if (scrollingDown && currentSlide === totalSlides - 1) {
+        setIsScrollLocked(false);
+        onScrollLockChange?.(false);
+      }
+
+      if (isScrolling.current) {
         setTimeout(() => {
           isScrolling.current = false;
-        }, 1000);
+        }, 700);
       }
     };
 
@@ -151,10 +146,8 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
         e.preventDefault();
         handleSlideChange(-1);
       } else if (e.key === 'ArrowDown' && currentSlide === totalSlides - 1) {
-        setTimeout(() => {
-          setIsScrollLocked(false);
-          onScrollLockChange?.(false);
-        }, 300);
+        setIsScrollLocked(false);
+        onScrollLockChange?.(false);
       }
     };
 
@@ -170,21 +163,37 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
       }
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [hasSlider, isScrollLocked, currentSlide, totalSlides, handleSlideChange]);
+  }, [sliderEnabled, isScrollLocked, currentSlide, totalSlides, handleSlideChange, onScrollLockChange]);
+
+  // Relock the hero when the user scrolls back to the top so slides can reverse on upward scroll
+  useEffect(() => {
+    if (!sliderEnabled) return;
+
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const { top } = heroRef.current.getBoundingClientRect();
+      const scrollingUp = window.scrollY < lastScrollY.current;
+      const heroNearTop = top >= 0 && top <= 40;
+
+      if (scrollingUp && heroNearTop && !isScrollLocked) {
+        setIsScrollLocked(true);
+        onScrollLockChange?.(true);
+      }
+
+      lastScrollY.current = window.scrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sliderEnabled, isScrollLocked, onScrollLockChange]);
 
   const handleDotClick = useCallback((index) => {
     const newDirection = index > currentSlide ? 1 : -1;
-    
-    // Start text transition
-    setIsTransitioning(true);
-    
+
     setCurrentSlide(index);
     setDirection(newDirection);
-    
-    // End text transition after slide animation completes
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600);
   }, [currentSlide]);
 
   // Don't render if no images available
@@ -205,16 +214,25 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
       ref={heroRef}
       className={`hero ${isScrollLocked ? 'scroll-locked' : ''}`}
     >
-      <div className="hero-slides-container">
+      <div 
+        className="hero-slides-container"
+        style={{
+          backgroundImage: imageLoadError
+            ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentSlide]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <AnimatePresence 
-          custom={direction} 
           initial={false} 
-          mode="wait"
+          mode="sync"
         >
           <HeroSlide 
             key={currentSlide}
             image={images[currentSlide]}
             imageLoadError={imageLoadError}
+            direction={direction}
           />
         </AnimatePresence>
       </div>
@@ -225,13 +243,13 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
         </div>
       )}
       
-      <div className={`hero-content ${isTransitioning ? 'transitioning' : ''}`}>
+      <div className="hero-content">
         <h1>{title}</h1>
         {subtitle && <h2>{subtitle}</h2>}
         <Button variant="primary">DISCOVER NOW</Button>
       </div>
       
-      {hasSlider && totalSlides > 1 && (
+      {sliderEnabled && (
         <div className="scroll-indicator">
           <div className="scroll-dots">
             {images.map((_, index) => (
@@ -259,10 +277,9 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
         </div>
       )}
       
-      <div className="whatsapp-icon">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="white">
-          <path d="M16 0C7.164 0 0 7.164 0 16c0 2.825.738 5.491 2.031 7.797L0 32l8.394-2.031C10.659 31.238 13.249 32 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.547 0-4.958-.7-7.009-1.917l-.503-.3-5.181 1.25 1.263-5.084-.328-.522A13.277 13.277 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
-          <path d="M23.503 19.403c-.336-.169-1.991-.983-2.3-1.094-.309-.111-.534-.169-.759.169-.225.336-.872 1.094-1.069 1.322-.197.225-.394.253-.731.084-.336-.169-1.419-.525-2.703-1.672-.998-.891-1.672-1.991-1.869-2.328-.197-.336-.022-.519.147-.688.15-.15.336-.394.503-.591.169-.197.225-.336.336-.563.111-.225.056-.422-.028-.591-.084-.169-.759-1.828-.941-2.5-.178-.653-.359-.563-.759-.575h-.647c-.225 0-.591.084-.9.422-.309.336-1.181 1.153-1.181 2.813s1.209 3.263 1.378 3.488c.169.225 2.381 3.638 5.766 5.1.806.347 1.434.556 1.925.712.809.256 1.544.219 2.125.134.647-.097 1.991-.816 2.272-1.603.281-.787.281-1.463.197-1.603-.084-.141-.309-.225-.647-.394z" fill="white"/>
+      <div className="whatsapp-icon" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+          <path d="M.057 24l1.687-6.163A11.93 11.93 0 0 1 0 11.934C0 5.355 5.373 0 12 0c3.192 0 6.196 1.24 8.477 3.513A11.86 11.86 0 0 1 24 11.934c-.002 6.627-5.373 12.014-12 12.014a12.34 12.34 0 0 1-5.652-1.363L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.003-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.432-9.888 9.884 0 2.225.656 3.891 1.746 5.389l-.999 3.648 3.741-.736zm11.387-5.464c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.1-.47-.149-.669.149-.198.297-.768.968-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.199-.298.298-.496.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.917-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.372-.011-.57-.011-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.073.149.198 2.104 3.207 5.1 4.492.714.308 1.27.492 1.704.63.716.228 1.367.196 1.88.118.575-.086 1.759-.718 2.006-1.413.248-.695.248-1.29.173-1.413z" />
         </svg>
       </div>
       
@@ -280,35 +297,24 @@ const Hero = ({ title, subtitle, backgroundImage, hasSlider = false, communityNa
   );
 };
 
-const HeroSlide = ({ image, imageLoadError }) => {
-  const direction = usePresenceData();
+const HeroSlide = ({ image, imageLoadError, direction }) => {
+  const slideTransition = { duration: 0.6, ease: [0.25, 0.65, 0.35, 1] };
   
   return (
     <motion.div
-      custom={direction}
       initial={{ 
         opacity: 0, 
-        x: direction * 100 
+        x: direction * 120 
       }}
       animate={{
         opacity: 1,
         x: 0,
-        transition: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          mass: 0.5,
-        },
+        transition: slideTransition
       }}
       exit={{ 
         opacity: 0, 
-        x: direction * -100,
-        transition: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          mass: 0.5,
-        }
+        x: direction * -120,
+        transition: slideTransition
       }}
       className="hero-slide-motion"
       style={{

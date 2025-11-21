@@ -97,6 +97,7 @@
   .footer-container {
     grid-template-columns: 1fr;
     gap: 2rem;
+    text-align: center;
   }
   
   .footer-bottom {
@@ -108,5 +109,11 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+  
+  .footer-column ul {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

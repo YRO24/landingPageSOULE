@@ -258,6 +258,12 @@
     flex-direction: column;
     height: auto;
     min-height: auto;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .three-cards-section .project-card {
+    min-height: 320px;
   }
   
   .category-item {
@@ -280,6 +286,15 @@
     line-height: 1.7;
   }
   
+  .three-cards-section {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .three-cards-section .project-card {
+    min-height: 260px;
+  }
+
   .category-item {
     height: 50vh;
     min-height: 350px;

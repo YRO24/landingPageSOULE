@@ -149,7 +149,7 @@
 .project-card-content h3 {
   font-size: 1.2rem;
   font-weight: 300;
-  letter-spacing: 2px;`
+  letter-spacing: 2px;
   margin-bottom: 1rem;
   z-index: 15;
   position: relative;
@@ -160,4 +160,40 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .project-card::before {
+    border-width: 2px;
+  }
+  
+  .project-card-content {
+    bottom: 1.25rem;
+    padding: 0 1.5rem;
+  }
+  
+  .project-card-logo {
+    margin-bottom: -1.5rem;
+  }
+  
+  .project-card-logo img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card-content {
+    bottom: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .project-card-logo img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .project-card-category {
+    letter-spacing: 0.18em;
+  }
 }

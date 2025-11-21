@@ -89,3 +89,12 @@
 .btn-solid:hover {
   color: black;
 }
+
+@media (max-width: 600px) {
+  .btn {
+    padding: 0.9rem 2rem;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 320px;
+  }
+}

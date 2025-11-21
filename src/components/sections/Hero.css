@@ -66,17 +66,6 @@
 .hero-content {
   position: relative;
   z-index: 10;
-  transition: color 0.3s ease-in-out;
-}
-
-.hero-content.transitioning {
-  color: #000000;
-}
-
-.hero-content.transitioning h1,
-.hero-content.transitioning h2 {
-  color: #000000;
-  transition: color 0.3s ease-in-out;
 }
 
 .hero-icon {
@@ -172,28 +161,28 @@
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  width: 60px;
-  height: 60px;
-  background: rgba(37, 211, 102, 0.9);
+  width: 58px;
+  height: 58px;
+  background: #25D366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   z-index: 10000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
   animation: fadeInScale 0.6s ease-out 1s both;
+  border: none;
 }
 
 .whatsapp-icon:hover {
-  background: rgba(37, 211, 102, 1);
-  transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
 }
 
 .whatsapp-icon:active {
-  transform: scale(1.05);
+  transform: translateY(0);
 }
 
 @keyframes fadeInScale {
@@ -208,8 +197,10 @@
 }
 
 .whatsapp-icon svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+  display: block;
+  transform: translateX(0.3px) translateY(0.3px);
 }
 
 @keyframes fadeInUp {
@@ -254,16 +245,20 @@
     font-size: 15vw;
   }
   
+  .scroll-indicator {
+    display: none;
+  }
+  
   .whatsapp-icon {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     bottom: 1rem;
     right: 1rem;
   }
   
   .whatsapp-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 }
 

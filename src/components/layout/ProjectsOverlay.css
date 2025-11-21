@@ -256,6 +256,11 @@
 }
 
 @media (max-width: 480px) {
+  .overlay-content {
+    width: 100%;
+    padding: 2rem 1.25rem;
+  }
+  
   .menu-links a {
     flex-direction: column;
     gap: 0.5rem;
