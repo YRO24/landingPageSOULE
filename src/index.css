@@ -89,6 +89,23 @@ button {
   cursor: pointer;
 }
 
+/* Comprehensive cursor styles for interactive elements */
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+
+input, textarea, select {
+  cursor: text;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  cursor: pointer;
+}
+
+.portfolio-item, .project-card, .dot {
+  cursor: pointer;
+}
+
 /* Smooth scrolling */
 @media (prefers-reduced-motion: reduce) {
   html {

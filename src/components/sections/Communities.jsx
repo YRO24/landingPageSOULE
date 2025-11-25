@@ -32,7 +32,6 @@ const Communities = () => {
           {duplicatedLogos.map((community, index) => (
             <div key={`${community.id}-${index}`} className="community-logo-item">
               <img src={community.logo} alt={community.name} />
-              <span className="community-name">{community.name}</span>
             </div>
           ))}
         </motion.div>

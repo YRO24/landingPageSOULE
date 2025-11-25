@@ -8,7 +8,7 @@ const ContactForm = ({ title = "Ready to transform your space?" }) => {
     email: '',
     phone: '',
     projectDetails: '',
-    message: ''
+    hearAboutUs: ''
   });
 
   const handleChange = (e) => {
@@ -29,58 +29,78 @@ const ContactForm = ({ title = "Ready to transform your space?" }) => {
       <div className="contact-container">
         <div className="contact-left">
           <h2>
-            <span className="underline-animated">Ready</span> to transform your space?
+            <span className="underline-animated">Ready</span> to<br />
+            transform<br />
+            your space?
           </h2>
         </div>
         
         <div className="contact-right">
           <h3>REACH OUT TO US</h3>
-          <p>Fill out the form and we'll get back to you soon.</p>
+          <p>Fill out the form below and we'll get back to you soon</p>
           
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-row">
+            <div className="field-group">
+              <label>FULL NAME*</label>
               <input
                 type="text"
                 name="fullName"
-                placeholder="FULL NAME*"
+                placeholder="Your full name"
                 value={formData.fullName}
                 onChange={handleChange}
                 required
               />
+            </div>
+            
+            <div className="field-group">
+              <label>EMAIL ADDRESS*</label>
               <input
                 type="email"
                 name="email"
-                placeholder="EMAIL ADDRESS*"
+                placeholder="Your@gmail.com"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
             </div>
             
-            <div className="form-row">
+            <div className="field-group">
+              <label>PHONE NUMBER</label>
               <input
                 type="tel"
                 name="phone"
-                placeholder="PHONE NUMBER"
+                placeholder="+971 50 XXX XXXX"
                 value={formData.phone}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="projectDetails"
-                placeholder="PROJECT DETAILS"
-                value={formData.projectDetails}
                 onChange={handleChange}
               />
             </div>
             
-            <textarea
-              name="message"
-              placeholder="HOW CAN THE TEAM ASSIST YOU?"
-              rows="4"
-              value={formData.message}
-              onChange={handleChange}
-            ></textarea>
+            <div className="field-group project-details">
+              <label>PROJECT DETAILS*</label>
+              <textarea
+                name="projectDetails"
+                placeholder="Tell us about your project, timeline, budget range, and any specific requirement.."
+                rows="6"
+                value={formData.projectDetails}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+            
+            <div className="field-group dropdown-field">
+              <label>HOW DID YOU HEAR ABOUT US?</label>
+              <select
+                name="hearAboutUs"
+                value={formData.hearAboutUs || ''}
+                onChange={handleChange}
+              >
+                <option value="">Select an option</option>
+                <option value="social-media">Social Media</option>
+                <option value="google">Google Search</option>
+                <option value="referral">Referral</option>
+                <option value="advertisement">Advertisement</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
             
             <Button variant="solid" type="submit">SUBMIT</Button>
           </form>

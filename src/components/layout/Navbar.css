@@ -18,6 +18,12 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 }
 
+.navbar.transparent {
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
 .navbar.mobile-open {
   background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(12px);

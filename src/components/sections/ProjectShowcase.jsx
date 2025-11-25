@@ -11,7 +11,7 @@ const ProjectShowcase = ({
 }) => {
   return (
     <section className={`project-showcase ${reverse ? 'reverse' : ''} ${dark ? 'dark' : 'light'}`}>
-      <div className="project-image image-zoom cursor-hover">
+      <div className="project-image image-zoom">
         <img src={image} alt={title} />
       </div>
       

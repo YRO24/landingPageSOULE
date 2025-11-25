@@ -43,7 +43,7 @@
 }
 
 .project-showcase.dark {
-  background: #1a1a1a;
+  background: #000000;
   color: white;
 }
 
@@ -57,7 +57,7 @@
   font-size: 3.5rem;
   font-weight: 400;
   margin-bottom: 2.5rem;
-  letter-spacing: 1px;
+  letter-spacing: -0.5px;
   line-height: 1.1;
 }
 

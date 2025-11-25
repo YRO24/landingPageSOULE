@@ -14,7 +14,7 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div 
-      className={`project-card cursor-hover ${isHovered ? 'is-hovered' : ''}`}
+      className={`project-card ${isHovered ? 'is-hovered' : ''}`}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

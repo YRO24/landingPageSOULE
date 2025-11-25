@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from '../components/sections/Hero';
 import ProjectShowcase from '../components/sections/ProjectShowcase';
 import ContactForm from '../components/sections/ContactForm';
@@ -14,6 +14,23 @@ const Home = () => {
   const featuredProject = projectsData[0];
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [isHeroScrollLocked, setIsHeroScrollLocked] = useState(false);
+
+  // Handle scroll to contact section on page load
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#contact') {
+      // Small delay to ensure the page has loaded
+      setTimeout(() => {
+        const contactSection = document.querySelector('.contact-section');
+        if (contactSection) {
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }, []);
   
   // Define images for each category
   const categoryImages = {

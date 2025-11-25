@@ -7,6 +7,7 @@ import './Navbar.css';
 const Navbar = () => {
   const location = useLocation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showProjectsOverlay, setShowProjectsOverlay] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(
@@ -61,7 +62,14 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', throttledScroll, { passive: true });
-    handleScroll(); // Check initial state
+    
+    // Set initial transparency and then check scroll state
+    if (isInitialLoad && location.pathname === '/') {
+      setIsDarkTheme(false); // Start transparent on home page
+      setIsInitialLoad(false);
+    } else {
+      handleScroll(); // Check initial state for other pages
+    }
     
     return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
@@ -110,6 +118,79 @@ const Navbar = () => {
     setShowProjectsOverlay(true);
   };
 
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // Function to scroll to contact section
+    const scrollToContact = () => {
+      const contactSection = document.querySelector('.contact-section');
+      if (contactSection) {
+        const elementTop = contactSection.offsetTop - 70;
+        window.scrollTo({
+          top: elementTop,
+          behavior: 'smooth'
+        });
+      }
+    };
+    
+    // Check current page
+    const currentPath = location.pathname;
+    
+    // If we're on home page, handle slideshow navigation
+    if (currentPath === '/') {
+      // Check if we're in the slideshow area
+      const heroSection = document.querySelector('.hero');
+      const currentScrollY = window.scrollY;
+      const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight;
+      
+      if (currentScrollY < heroHeight) {
+        // We're in the slideshow, simulate down arrows until end of slideshow
+        let arrowCount = 0;
+        const maxArrows = 10; // Safety limit
+        
+        const sendArrowAndCheck = () => {
+          // Send down arrow key event
+          const downArrowEvent = new KeyboardEvent('keydown', {
+            key: 'ArrowDown',
+            code: 'ArrowDown',
+            keyCode: 40,
+            which: 40,
+            bubbles: true,
+            cancelable: true
+          });
+          document.dispatchEvent(downArrowEvent);
+          
+          arrowCount++;
+          
+          // Check after a short delay if we're still in slideshow area
+          setTimeout(() => {
+            const newScrollY = window.scrollY;
+            const stillInHero = newScrollY < (heroHeight - 100); // Small buffer
+            
+            if (stillInHero && arrowCount < maxArrows) {
+              // Still in slideshow, send another arrow
+              sendArrowAndCheck();
+            } else {
+              // Reached end of slideshow or hit limit, now jump to contact
+              setTimeout(() => {
+                scrollToContact();
+              }, 200); // Small delay before jumping to contact
+            }
+          }, 150); // Wait for scroll animation to complete
+        };
+        
+        sendArrowAndCheck();
+      } else {
+        // Not in slideshow, jump directly to contact section
+        scrollToContact();
+      }
+    } else {
+      // On other pages (about, portfolio), scroll directly to contact section
+      scrollToContact();
+    }
+  };
+
   const handleCloseOverlay = () => {
     setShowProjectsOverlay(false);
   };
@@ -117,7 +198,7 @@ const Navbar = () => {
   return (
     <>
       <nav 
-        className={`navbar navbar-visible ${isDarkTheme ? 'dark-theme' : ''} ${isMobileMenuOpen ? 'mobile-open' : ''}`}
+        className={`navbar navbar-visible ${isDarkTheme ? 'dark-theme' : 'transparent'} ${isMobileMenuOpen ? 'mobile-open' : ''}`}
       >
         <div className="nav-container">
           <Link to="/" className="logo">
@@ -157,7 +238,14 @@ const Navbar = () => {
                   PROJECTS
                 </button>
               </li>
-              <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>CONTACT</Link></li>
+              <li>
+                <button 
+                  className="projects-trigger"
+                  onClick={handleContactClick}
+                >
+                  CONTACT
+                </button>
+              </li>
             </ul>
           </div>
         </div>

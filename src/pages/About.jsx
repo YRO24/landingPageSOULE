@@ -9,7 +9,12 @@ const About = () => {
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero-content">
-          <h1>ABOUT US</h1>
+          <h1>
+            <span className="soule-with-underline">
+              Soule
+              <span className="underline-overlay"></span>
+            </span>
+          </h1>
           <div className="about-text-content">
             <p>
               At Soule Studio, we redefine luxury living through thoughtful design, 
@@ -90,7 +95,7 @@ const About = () => {
             <div key={service.id} className="service-item">
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <p className="applications"><em>Applications: {service.applications}</em></p>
+              <p className="applications">Applications: {service.applications}</p>
             </div>
           ))}
         </div>
