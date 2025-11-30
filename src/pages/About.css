@@ -153,9 +153,11 @@
 }
 
 /* Core Values */
+
 .core-values {
   padding: 6rem 0;
   background: white;
+  text-align: center;
 }
 
 .core-values h2 {
@@ -207,7 +209,7 @@
 }
 
 .value-item {
-  text-align: center;
+  text-align: left;
 }
 
 .value-item h3 {

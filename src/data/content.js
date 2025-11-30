@@ -68,27 +68,27 @@ export const communitiesData = [
 export const servicesData = [
   {
     id: 1,
-    title: 'Architectural Visualisation',
-    description: 'We translate approved designs into reality with a network of master craftsmen, site specialists, and project managers, ensuring quality and control at every stage of build and fit-out.',
-    applications: 'Villa renovations, new constructions, luxury detailing.'
+    title: 'Architectural Design',
+    description: 'We create innovative architectural solutions that blend functionality with aesthetic excellence, designing structures that stand the test of time.',
+    applications: 'Residential villas, commercial buildings, urban planning.'
   },
   {
     id: 2,
-    title: 'Interior Styling & Design',
+    title: 'Interior Design',
     description: 'From bespoke layouts to handpicked finishes, we curate interiors that speak to our clients\' taste, lifestyle, and legacy. Every detail, from furniture to lighting, is chosen with purpose.',
     applications: 'Turnkey villas, concept homes, investment properties.'
   },
   {
     id: 3,
-    title: 'High-End Project Execution',
-    description: 'We translate approved designs into reality with a network of master craftsmen, site specialists, and project managers, ensuring quality and control at every stage of build and fit-out.',
-    applications: 'Villa renovations, new constructions, luxury detailing.'
+    title: 'Landscape Design',
+    description: 'We integrate nature into architecture—designing gardens, courtyards, terraces, and outdoor features that amplify the experience of space.',
+    applications: 'Pool areas, driveways, open-air lounges, villa gardens.'
   },
   {
     id: 4,
-    title: 'Landscape Design',
-    description: 'We integrate nature into architecture—designing gardens, courtyards, terraces, and outdoor features that amplify the experience of space.',
-    applications: 'Pool areas, driveways, open-air lounges, villa entires.'
+    title: 'High-End Project Execution',
+    description: 'We translate approved designs into reality with a network of master craftsmen, site specialists, and project managers, ensuring quality and control at every stage of build and fit-out.',
+    applications: 'Villa renovations, new constructions, luxury detailing.'
   }
 ];
 

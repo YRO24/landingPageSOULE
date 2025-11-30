@@ -11,34 +11,31 @@ const Footer = () => {
             <li><a href="/services">SERVICES</a></li>
             <li><a href="/portfolio">PORTFOLIO</a></li>
             <li><a href="/contact">CONTACT</a></li>
+            <li><a href="/careers">CAREERS</a></li>
           </ul>
         </div>
         
         <div className="footer-column">
-          <p>Soule Studio LLC #7</p>
-          <p>Denmark group, ground building</p>
-          <p>AI Quoz 3 - Dubai - UAE</p>
-          <br />
           <p><strong>CONTACT</strong></p>
-          <p>050-4832566 / 052-2782308</p>
-        </div>
-        
-        <div className="footer-column">
+          <p>+971 50 483 2566</p>
+          <p>+971 52 278 2308</p>
+          <br />
           <p><strong>EMAIL</strong></p>
           <p>info@soule.studio</p>
-          <br />
-          <p><strong>BUSINESS HOURS</strong></p>
-          <p>Monday to Saturday</p>
-          <p>9 am - 07 pm</p>
         </div>
         
         <div className="footer-column">
-          <p><strong>GET IN TOUCH</strong></p>
-          <p>Dubai, United Arab Emirates</p>
-          <br />
-          <p>+971 50 712 3608</p>
-          <br />
-          <p>info@soule.studio</p>
+          <p><strong>ADDRESS</strong></p>
+          <p>Soule Studio LLC #7</p>
+          <p>Denmark group, ground building</p>
+          <p>Al Quoz 3 - Dubai - UAE</p>
+        </div>
+        
+        <div className="footer-column">
+          <p><strong>BUSINESS HOURS</strong></p>
+          <p>Monday to Saturday</p>
+          <p>9:00 AM - 7:00 PM</p>
+          <p>Sunday: Closed</p>
         </div>
       </div>
       

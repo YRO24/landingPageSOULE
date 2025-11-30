@@ -13,6 +13,19 @@
   direction: ltr;
 }
 
+.project-showcase.reverse .project-info {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.project-showcase.reverse .project-info p {
+  margin-left: auto;
+}
+
+.project-showcase.reverse .project-image img {
+  object-position: center bottom;
+}
+
 .project-image {
   position: relative;
   overflow: hidden;

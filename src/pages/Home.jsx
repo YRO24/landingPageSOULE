@@ -168,7 +168,7 @@ const Home = () => {
         <ProjectShowcase 
           title={featuredProject.title}
           description="A private waterfront residence situated in the heart of Dubai's most prestigious gated community. Designed for a modern family that values clean lines, natural materials, and open air connectivity."
-          image={IMAGES.bedroom5}
+          image={IMAGES.kalpesh4}
           dark={true}
           reverse={true}
           link="/project/1"

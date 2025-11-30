@@ -54,7 +54,7 @@ const Portfolio = () => {
             to={`/project/${project.id}`} 
             className="portfolio-item"
           >
-            <img src={project.image} alt={project.title} />
+            <img src={'/assets/images/KALPESH 5.jpg'} alt={project.title} />
             <div className="portfolio-overlay">
               <h3>{project.title.toUpperCase()}</h3>
             </div>
