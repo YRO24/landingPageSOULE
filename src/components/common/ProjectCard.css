@@ -180,6 +180,15 @@
     width: 150px;
     height: 150px;
   }
+  
+  .project-card {
+    /* Better touch interactions */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .project-card:active {
+    transform: scale(0.98);
+  }
 }
 
 @media (max-width: 480px) {

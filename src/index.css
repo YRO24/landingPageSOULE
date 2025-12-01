@@ -56,14 +56,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   /* Hide scrollbar for webkit browsers */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* Mobile performance optimizations */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 body::-webkit-scrollbar {
@@ -72,6 +74,8 @@ body::-webkit-scrollbar {
 
 html {
   scroll-behavior: smooth;
+  /* Performance optimizations for mobile */
+  -webkit-overflow-scrolling: touch;
 }
 
 a {
@@ -92,6 +96,17 @@ button {
 /* Comprehensive cursor styles for interactive elements */
 a, button, [role="button"], input[type="submit"], input[type="button"] {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow text selection for content areas */
+p, h1, h2, h3, h4, h5, h6, span, 
+div[class*="content"], div[class*="text"], 
+div[class*="about"], section[class*="content"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 input, textarea, select {

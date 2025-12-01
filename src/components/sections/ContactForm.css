@@ -166,6 +166,14 @@
     text-align: center;
   }
   
+  .contact-right h3 {
+    text-align: center;
+  }
+  
+  .contact-right p {
+    text-align: center;
+  }
+  
   .form-row {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -173,6 +181,15 @@
   
   .contact-form {
     max-width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .field-group,
+  .project-details,
+  .dropdown-field {
+    grid-column: 1;
+    grid-row: auto;
   }
   
   .contact-form input,
@@ -181,6 +198,11 @@
     padding: 1rem;
     font-size: 1rem;
     min-height: 48px; /* Better touch targets */
+    width: 100%;
+  }
+  
+  .contact-form select {
+    max-width: 100%;
   }
   
   .contact-form textarea {
@@ -188,6 +210,7 @@
   }
   
   .contact-form button {
+    grid-column: 1;
     width: 100%;
   }
 }
@@ -203,11 +226,32 @@
   }
   
   .contact-left h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
+    line-height: 1.1;
+  }
+  
+  .contact-right h3 {
+    font-size: 0.9rem;
+  }
+  
+  .contact-right p {
+    font-size: 0.85rem;
   }
   
   .contact-form {
     gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  
+  .field-group label {
+    font-size: 0.7rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    padding: 0.9rem;
+    font-size: 0.95rem;
   }
 }

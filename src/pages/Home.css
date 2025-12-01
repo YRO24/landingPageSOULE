@@ -7,10 +7,7 @@
   z-index: 1;
 }
 
-.hero-spacer {
-  height: 100vh;
-  width: 100%;
-}
+
 
 .about-soule {
   padding: 4rem 0;
@@ -242,7 +239,7 @@
   .about-body {
     grid-template-columns: 1fr;
     gap: 2rem;
-    text-align: center;
+    text-align: left;
   }
   
   .about-text-columns {
@@ -275,6 +272,10 @@
 @media (max-width: 480px) {
   .about-content {
     padding: 0 1rem;
+  }
+  
+  .about-body {
+    gap: 1.5rem;
   }
   
   .about-header h2 {

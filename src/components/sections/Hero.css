@@ -10,43 +10,13 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+  /* Performance optimizations */
+  will-change: transform;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
-/* Hide scrollbar globally when hero is active */
-.hero.scroll-locked {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 50;
-}
 
-/* Ensure hero can receive focus for keyboard events */
-.hero:focus {
-  outline: none;
-}
-
-.hero-slides-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hero-slide-motion {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  will-change: transform, opacity;
-}
 
 .hero-community-name {
   position: absolute;
@@ -105,59 +75,7 @@
   animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  z-index: 15;
-}
 
-.scroll-instruction {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 300;
-  animation: fadeInUp 1s ease-out 0.8s both;
-}
-
-.scroll-dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: none;
-  outline: none;
-}
-
-.dot:hover,
-.dot:focus {
-  background: rgba(255, 255, 255, 0.8);
-  transform: scale(1.1);
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: 2px;
-}
-
-.dot.active {
-  background: white;
-  transform: scale(1.3);
-}
-
-.dot:focus {
-  outline: 2px solid white;
-}
 
 
 
@@ -207,11 +125,6 @@
     font-size: 15vw;
   }
   
-  .scroll-indicator {
-    display: none;
-  }
-  
-
 }
 
 @media (max-width: 480px) {
@@ -223,30 +136,15 @@
     font-size: 1.8rem;
   }
   
-  .scroll-instruction {
-    font-size: 0.7rem;
+  .hero-content h1 {
+    margin-bottom: 0.8rem;
   }
-}
-
-/* Infinite slideshow hero styles */
-.hero-infinite-slideshow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.slideshow-track {
-  display: flex;
-  height: 100%;
-  width: 300%; /* Triple width for seamless loop */
-}
-
-.slideshow-slide {
-  flex-shrink: 0;
-  width: 33.333%; /* One third of track width */
-  height: 100%;
+  
+  .hero-content h2 {
+    margin-bottom: 2rem;
+  }
+  
+  .hero-content {
+    padding: 0 1rem;
+  }
 }

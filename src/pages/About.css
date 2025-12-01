@@ -400,6 +400,14 @@
   .values-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0;
+  }
+  
+  .core-values h2 {
+    padding-left: 1rem;
+    font-size: 2.5rem;
   }
   
   .value-item:nth-child(1),

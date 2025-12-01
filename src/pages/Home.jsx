@@ -13,11 +13,10 @@ import './Home.css';
 const Home = () => {
   const featuredProject = projectsData[0];
   const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [isHeroScrollLocked, setIsHeroScrollLocked] = useState(false);
 
   // Handle scroll to contact section on page load
   useEffect(() => {
-    const hash = window.location.hash;
+    const { hash } = window.location;
     if (hash === '#contact') {
       // Small delay to ensure the page has loaded
       setTimeout(() => {
@@ -57,13 +56,7 @@ const Home = () => {
     }
   };
 
-  // Hero slideshow images
-  const heroSlideImages = [
-    IMAGES.bedroom4,
-    IMAGES.bedroom5,
-    IMAGES.kalpesh5,
-    IMAGES.office1
-  ];
+
 
   return (
     <div className="home-page">
@@ -71,14 +64,10 @@ const Home = () => {
         title="Design with Soul"
         subtitle="Built with Precision"
         backgroundImage={IMAGES.bedroom4}
-        hasSlider={true}
         communityName=""
-        slideImages={heroSlideImages}
-        onScrollLockChange={setIsHeroScrollLocked}
+        slideImages={[IMAGES.bedroom4]}
       />
-      
-      {/* Spacer for when hero is in fixed position */}
-      {isHeroScrollLocked && <div className="hero-spacer"></div>}
+
       
       {/* About Soule Section */}
       <motion.section 
