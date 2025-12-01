@@ -243,13 +243,27 @@
 
 @media (max-width: 768px) {
   .enhanced-project-hero {
-    min-height: 70vh;
-    align-items: center;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 80px;
+  }
+  
+  .hero-overlay {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+    padding: 3rem 0;
   }
   
   .hero-content-wrapper {
     padding: 0 1.5rem;
     text-align: center;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .project-title-section {
+    margin: 0 auto;
+    max-width: 100%;
   }
   
   .project-main-title {
@@ -260,11 +274,17 @@
   .project-subtitle {
     font-size: 0.95rem;
     line-height: 1.6;
+    margin: 0 auto;
   }
   
   .project-specs-grid {
-    margin-top: 2rem;
-    gap: 0.75rem;
+    margin-top: 0;
+    gap: 1.2rem;
+    text-align: center;
+  }
+  
+  .spec-row {
+    gap: 0.4rem;
   }
   
   .spec-label {
@@ -284,8 +304,16 @@
     padding: 0 1.5rem;
   }
   
+  .content-grid {
+    gap: 3rem;
+  }
+  
   .content-left {
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+  
+  .detail-block {
+    margin-bottom: 0;
   }
   
   .detail-title {
@@ -315,16 +343,23 @@
 
 @media (max-width: 480px) {
   .enhanced-project-hero {
-    min-height: 60vh;
+    min-height: auto;
+    padding-top: 70px;
+  }
+  
+  .hero-overlay {
+    padding: 2.5rem 0;
   }
   
   .hero-content-wrapper {
     padding: 0 1rem;
+    gap: 1.5rem;
   }
   
   .project-main-title {
-    font-size: 2rem !important;
-    line-height: 1.1;
+    font-size: 1.8rem !important;
+    line-height: 1.15;
+    margin-bottom: 1rem;
   }
   
   .project-subtitle {
@@ -332,8 +367,13 @@
     line-height: 1.5;
   }
   
+  .project-specs-grid {
+    gap: 1rem;
+  }
+  
   .spec-row {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
+    gap: 0.3rem;
   }
   
   .spec-label {
@@ -342,7 +382,8 @@
   }
   
   .spec-value {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.3;
   }
   
   .project-content-section,
@@ -356,16 +397,35 @@
     padding: 0 1rem;
   }
   
+  .content-left {
+    gap: 2rem;
+  }
+  
+  .detail-block {
+    margin-bottom: 0;
+  }
+  
   .detail-title {
     font-size: 0.75rem;
     letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
   }
   
   .detail-text {
     font-size: 0.85rem;
+    line-height: 1.65;
   }
   
   .tech-item {
     font-size: 0.85rem;
+    line-height: 1.8;
+  }
+  
+  .gallery-grid {
+    gap: 0.75rem;
+  }
+  
+  .extended-gallery-grid {
+    gap: 0.75rem;
   }
 }
