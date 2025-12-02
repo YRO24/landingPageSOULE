@@ -136,7 +136,16 @@
 
 @media (max-width: 768px) {
   .portfolio-page {
-    padding-top: 7.5rem;
+    padding-top: 0;
+  }
+  
+  .portfolio-hero {
+    margin-top: 90px;
+    padding: 2rem 1.5rem;
+  }
+  
+  .portfolio-hero h1 {
+    font-size: 2rem;
   }
   
   .portfolio-grid {
@@ -177,7 +186,16 @@
 
 @media (max-width: 480px) {
   .portfolio-page {
-    padding-top: 7rem;
+    padding-top: 0;
+  }
+  
+  .portfolio-hero {
+    margin-top: 80px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .portfolio-hero h1 {
+    font-size: 1.8rem;
   }
   
   .portfolio-grid {

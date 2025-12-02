@@ -245,7 +245,7 @@
   .enhanced-project-hero {
     min-height: auto;
     align-items: flex-start;
-    padding-top: 80px;
+    padding-top: 100px;
   }
   
   .hero-overlay {
@@ -344,7 +344,7 @@
 @media (max-width: 480px) {
   .enhanced-project-hero {
     min-height: auto;
-    padding-top: 70px;
+    padding-top: 90px;
   }
   
   .hero-overlay {
