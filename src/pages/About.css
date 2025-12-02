@@ -372,8 +372,17 @@
   }
   
   .about-hero {
-    padding: 3rem 1.5rem;
-    min-height: 70vh;
+    padding: 120px 1.5rem 3rem;
+    min-height: auto;
+  }
+  
+  .about-hero-content {
+    max-width: 100%;
+    text-align: left;
+  }
+  
+  .about-text-content {
+    max-width: 100%;
   }
   
   .about-hero-content h1 {
@@ -384,7 +393,9 @@
   
   .about-hero-content p {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    text-align: left;
   }
   
   .team-grid {
@@ -400,14 +411,14 @@
   .values-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 0;
+    padding: 0 1.5rem;
   }
   
   .core-values h2 {
-    padding-left: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     font-size: 2.5rem;
+    margin-bottom: 2.5rem;
   }
   
   .value-item:nth-child(1),
@@ -444,8 +455,17 @@
   }
   
   .about-hero {
-    padding: 2rem 1rem;
-    min-height: 60vh;
+    padding: 100px 1rem 2.5rem;
+    min-height: auto;
+    align-items: flex-start;
+  }
+  
+  .about-hero-content {
+    text-align: left;
+  }
+  
+  .about-text-content {
+    max-width: 100%;
   }
   
   .about-hero-content h1 {
@@ -456,7 +476,9 @@
   
   .about-hero-content p {
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+    text-align: left;
   }
   
   .team-section,
@@ -465,9 +487,19 @@
     padding: 3rem 0;
   }
   
+  .team-grid,
+  .services-grid {
+    padding: 0 1rem;
+  }
+  
+  .mission-vision {
+    padding: 3rem 0;
+  }
+  
   .mission-vision-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 0 1rem;
   }
   
   .divider {
@@ -476,5 +508,18 @@
   
   .values-grid {
     grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .core-values h2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 2rem;
+  }
+  
+  .services-section h2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 2rem;
   }
 }
