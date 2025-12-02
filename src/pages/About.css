@@ -369,10 +369,19 @@
 @media (max-width: 768px) {
   .about-page {
     padding-top: 0;
+    margin-top: 0;
+  }
+  
+  .about-page::before {
+    content: '';
+    display: block;
+    height: 90px;
+    background: #000;
   }
   
   .about-hero {
-    padding: 100px 1.5rem 3rem;
+    padding: 0 1.5rem 3rem;
+    margin-top: 0;
     min-height: auto;
   }
   
@@ -383,6 +392,7 @@
   
   .about-text-content {
     max-width: 100%;
+    width: 100%;
   }
   
   .about-hero-content h1 {
@@ -452,10 +462,19 @@
 @media (max-width: 480px) {
   .about-page {
     padding-top: 0;
+    margin-top: 0;
+  }
+  
+  .about-page::before {
+    content: '';
+    display: block;
+    height: 80px;
+    background: #000;
   }
   
   .about-hero {
-    padding: 90px 1rem 2.5rem;
+    padding: 0 1rem 2.5rem;
+    margin-top: 0;
     min-height: auto;
     align-items: flex-start;
   }
