@@ -1,5 +1,16 @@
 .about-page {
   padding-top: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Force transparent navbar on About page initially */
+.about-page .navbar {
+  background: transparent !important;
+}
+
+.about-page .navbar.dark-theme {
+  background: rgba(255, 255, 255, 0.94) !important;
 }
 
 .about-hero {
@@ -12,6 +23,9 @@
   justify-content: center;
   color: white;
   padding: 4rem 2rem;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .about-hero-content {
@@ -67,6 +81,8 @@
 .team-section {
   padding: 6rem 0;
   background: black;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .team-grid {
@@ -120,6 +136,8 @@
 .mission-vision {
   padding: 4rem 0;
   background: #f5f5f5;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .mission-vision-grid {
@@ -158,6 +176,8 @@
   padding: 6rem 0;
   background: white;
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .core-values h2 {
@@ -232,6 +252,8 @@
   padding: 6rem 0;
   background: white;
   border-top: 1px solid #e0e0e0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .services-section h2 {
@@ -372,15 +394,21 @@
     margin-top: 0;
   }
   
+  /* Make navbar background transparent on mobile About page */
+  .about-page .navbar {
+    background: transparent !important;
+  }
+  
+  .about-page .navbar.dark-theme {
+    background: transparent !important;
+  }
+  
   .about-page::before {
-    content: '';
-    display: block;
-    height: 90px;
-    background: #000;
+    display: none;
   }
   
   .about-hero {
-    padding: 0 1.5rem 3rem;
+    padding: 120px 1.5rem 3rem;
     margin-top: 0;
     min-height: auto;
   }
@@ -465,15 +493,21 @@
     margin-top: 0;
   }
   
+  /* Make navbar background transparent on small mobile About page */
+  .about-page .navbar {
+    background: transparent !important;
+  }
+  
+  .about-page .navbar.dark-theme {
+    background: transparent !important;
+  }
+  
   .about-page::before {
-    content: '';
-    display: block;
-    height: 80px;
-    background: #000;
+    display: none;
   }
   
   .about-hero {
-    padding: 0 1rem 2.5rem;
+    padding: 110px 1rem 2.5rem;
     margin-top: 0;
     min-height: auto;
     align-items: flex-start;

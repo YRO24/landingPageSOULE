@@ -31,7 +31,7 @@ const Navbar = () => {
       const currentPath = window.location.pathname + window.location.search;
       const forceLightRoute = currentPath.includes('/portfolio') || currentPath.includes('/project/');
       // Define light sections for all pages including project detail pages
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section, .project-content-section, .project-gallery-section, .extended-gallery-section, .portfolio-page, .portfolio-nav, .project-detail-page');
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section, .project-content-section, .project-gallery-section, .extended-gallery-section, .portfolio-page, .portfolio-nav, .project-detail-page, .about-page');
       const navbarHeight = 60; // Reduced height for more precise detection
       
       let isOverLightSection = false;
