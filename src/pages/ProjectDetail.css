@@ -7,6 +7,7 @@
 .enhanced-project-hero {
   position: relative;
   min-height: 100vh;
+  background-color: #000;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -14,6 +15,17 @@
   align-items: flex-end;
   color: white;
   margin-top: 0;
+}
+
+.enhanced-project-hero::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #000;
+  z-index: -1;
 }
 
 .hero-overlay {
@@ -178,7 +190,7 @@
 }
 
 .gallery-item:hover .gallery-image {
-  transform: scale(1.05);
+  /* No zoom on hover */
 }
 
 /* Extended Gallery */
@@ -207,7 +219,7 @@
 }
 
 .extended-gallery-item:hover .extended-gallery-image {
-  transform: scale(1.05);
+  /* No zoom on hover */
 }
 
 /* Responsive Design */

@@ -1,6 +1,7 @@
 import { servicesData, teamData, coreValues } from '../data/content';
 import Communities from '../components/sections/Communities';
 import ContactForm from '../components/sections/ContactForm';
+import FlashlightImage from '../components/common/FlashlightImage';
 import './About.css';
 
 const About = () => {
@@ -35,7 +36,7 @@ const About = () => {
           {teamData.map(member => (
             <div key={member.id} className="team-member">
               <div className="team-photo">
-                <img src={member.image} alt={member.name} />
+                <FlashlightImage src={member.image} alt={member.name} />
               </div>
               <h3>{member.name}</h3>
               <p>{member.role}</p>

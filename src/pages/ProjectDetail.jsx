@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { projectsData } from '../data/content';
 import ContactForm from '../components/sections/ContactForm';
 import Communities from '../components/sections/Communities';
+import FlashlightImage from '../components/common/FlashlightImage';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -80,7 +81,7 @@ const ProjectDetail = () => {
           <div className="gallery-grid">
             {project.images.slice(1, 5).map((image, index) => (
               <div key={index} className="gallery-item">
-                <img src={image} alt={`${project.title} view ${index + 1}`} className="gallery-image" />
+                <FlashlightImage src={image} alt={`${project.title} view ${index + 1}`} className="gallery-image" />
               </div>
             ))}
           </div>
@@ -94,7 +95,7 @@ const ProjectDetail = () => {
             <div className="extended-gallery-grid">
               {project.images.slice(5).map((image, index) => (
                 <div key={index} className="extended-gallery-item">
-                  <img src={image} alt={`${project.title} detail ${index + 1}`} className="extended-gallery-image" />
+                  <FlashlightImage src={image} alt={`${project.title} detail ${index + 1}`} className="extended-gallery-image" />
                 </div>
               ))}
             </div>

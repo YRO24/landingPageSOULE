@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { projectsData } from '../data/content';
 import ContactForm from '../components/sections/ContactForm';
 import Communities from '../components/sections/Communities';
+import FlashlightImage from '../components/common/FlashlightImage';
 import './Portfolio.css';
 
 const Portfolio = () => {
@@ -35,13 +36,13 @@ const Portfolio = () => {
             <button onClick={() => setActiveFilter('all')}>ALL</button>
           </li>
           <li className={activeFilter === 'interiors' ? 'active' : ''}>
-            <button onClick={() => setActiveFilter('interiors')}>INTERIORS</button>
+            <button onClick={() => setActiveFilter('interiors')}>ARCHITECTURAL</button>
           </li>
           <li className={activeFilter === 'architecture' ? 'active' : ''}>
-            <button onClick={() => setActiveFilter('architecture')}>ARCHITECTURE</button>
+            <button onClick={() => setActiveFilter('architecture')}>INTERIOR</button>
           </li>
           <li className={activeFilter === 'residential' ? 'active' : ''}>
-            <button onClick={() => setActiveFilter('residential')}>RESIDENTIAL</button>
+            <button onClick={() => setActiveFilter('residential')}>LANDSCAPE</button>
           </li>
         </ul>
       </nav>
@@ -54,7 +55,7 @@ const Portfolio = () => {
             to={`/project/${project.id}`} 
             className="portfolio-item"
           >
-            <img src={'/assets/images/KALPESH 5.jpg'} alt={project.title} />
+            <FlashlightImage src={'/assets/images/KALPESH 5.jpg'} alt={project.title} />
             <div className="portfolio-overlay">
               <h3>{project.title.toUpperCase()}</h3>
             </div>

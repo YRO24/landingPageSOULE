@@ -77,6 +77,23 @@
   overflow: hidden;
 }
 
+.project-card-image .flashlight-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-image .flashlight-image-container {
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-image .flashlight-image-base,
+.project-card-image .flashlight-image-reveal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .project-card-image img {
   width: 100%;
   height: 100%;
@@ -133,7 +150,6 @@
   width: 200px;
   height: 200px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 

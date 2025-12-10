@@ -1,5 +1,6 @@
 import './ProjectShowcase.css';
 import Button from '../common/Button';
+import FlashlightImage from '../common/FlashlightImage';
 
 const ProjectShowcase = ({ 
   title, 
@@ -12,7 +13,7 @@ const ProjectShowcase = ({
   return (
     <section className={`project-showcase ${reverse ? 'reverse' : ''} ${dark ? 'dark' : 'light'}`}>
       <div className="project-image image-zoom">
-        <img src={image} alt={title} />
+        <FlashlightImage src={image} alt={title} />
       </div>
       
       <div className="project-info">

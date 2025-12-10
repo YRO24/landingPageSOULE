@@ -172,7 +172,7 @@
 }
 
 .category-item:hover img {
-  transform: scale(1.1);
+  /* No zoom on hover */
 }
 
 .category-overlay {

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import './ProjectCard.css';
+import FlashlightImage from './FlashlightImage';
 
 const ProjectCard = ({ 
   image, 
@@ -20,11 +21,15 @@ const ProjectCard = ({
       onMouseLeave={onMouseLeave}
     >
       <div className="project-card-image">
-        <motion.img 
-          src={image} 
-          alt={category || title}
+        <motion.div 
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        />
+          className="flashlight-wrapper"
+        >
+          <FlashlightImage 
+            src={image} 
+            alt={category || title}
+          />
+        </motion.div>
         {overlay && <div className="project-card-overlay"></div>}
       </div>
       <motion.div 
@@ -36,7 +41,7 @@ const ProjectCard = ({
             className="project-card-logo"
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <img src={logo} alt="Logo" />
+            <FlashlightImage src={logo} alt="Logo" />
           </motion.div>
         )}
         {category && <h3 className="project-card-category">{category}</h3>}

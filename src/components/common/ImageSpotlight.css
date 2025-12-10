@@ -1,0 +1,61 @@
+.spotlight-container {
+  position: relative;
+}
+
+/* Remove default dim - images at full brightness */
+.spotlight-image,
+.hero,
+.about-hero,
+.enhanced-project-hero,
+.portfolio-item img,
+.gallery-image,
+.extended-gallery-image,
+.team-photo img,
+.project-card img,
+img,
+.hero-background,
+.project-showcase img,
+.communities-logos-strip img,
+.footer img,
+.featured-project-left,
+.project-grid-item {
+  position: relative;
+  transition: opacity 0.15s ease;
+}
+
+/* Flashlight effect removed - no dim overlay */
+
+.spotlight-image:hover,
+.hero:hover,
+.about-hero:hover,
+.enhanced-project-hero:hover,
+.portfolio-item:hover img,
+.gallery-item:hover .gallery-image,
+.extended-gallery-item:hover .extended-gallery-image,
+.team-photo:hover img,
+.project-card:hover img,
+img:hover,
+.featured-project-left:hover,
+.project-grid-item:hover {
+  opacity: 1;
+}
+
+/* Portfolio and gallery items - no dim overlay */
+
+/* Mobile optimization */
+@media (hover: none) and (pointer: coarse) {
+  .spotlight-image,
+  .hero,
+  .about-hero,
+  .enhanced-project-hero,
+  .portfolio-item img,
+  .gallery-image,
+  .extended-gallery-image,
+  .team-photo img,
+  .project-card img,
+  img,
+  .featured-project-left,
+  .project-grid-item {
+    opacity: 1;
+  }
+}

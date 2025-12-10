@@ -34,11 +34,6 @@ export const projectsData = [
 
 export const communitiesData = [
   {
-    id: 1,
-    name: 'MED BIN RASHID AL MAKTOUM CITY',
-    logo: IMAGES.logo
-  },
-  {
     id: 2,
     name: 'PALM JUMEIRAH',
     logo: IMAGES.palmJumeirah
@@ -59,8 +54,8 @@ export const communitiesData = [
     logo: IMAGES.original
   },
   {
-    id: 6,
-    name: 'ARABIAN RANCHES',
+    id: 7,
+    name: 'SOULE STUDIO',
     logo: IMAGES.logo
   }
 ];

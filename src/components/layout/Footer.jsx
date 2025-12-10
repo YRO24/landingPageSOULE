@@ -11,7 +11,6 @@ const Footer = () => {
             <li><a href="/services">SERVICES</a></li>
             <li><a href="/portfolio">PORTFOLIO</a></li>
             <li><a href="/contact">CONTACT</a></li>
-            <li><a href="/careers">CAREERS</a></li>
           </ul>
         </div>
         
@@ -32,10 +31,9 @@ const Footer = () => {
         </div>
         
         <div className="footer-column">
-          <p><strong>BUSINESS HOURS</strong></p>
-          <p>Monday to Saturday</p>
-          <p>9:00 AM - 7:00 PM</p>
-          <p>Sunday: Closed</p>
+          <p><strong>CAREERS</strong></p>
+          <p>Email us at</p>
+          <p>careers@soule.studio</p>
         </div>
       </div>
       

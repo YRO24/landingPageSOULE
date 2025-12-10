@@ -44,7 +44,7 @@
 }
 
 .project-showcase:hover .project-image img {
-  transform: scale(1.05);
+  /* No zoom on hover */
 }
 
 .project-info {
