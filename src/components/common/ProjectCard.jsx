@@ -41,7 +41,7 @@ const ProjectCard = ({
             className="project-card-logo"
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FlashlightImage src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" />
           </motion.div>
         )}
         {category && <h3 className="project-card-category">{category}</h3>}

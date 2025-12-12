@@ -12,7 +12,10 @@ const ProjectDetail = () => {
   return (
     <div className="project-detail-page">
       {/* Enhanced Hero Section */}
-      <section className="enhanced-project-hero" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${project.images[0]})` }}>
+      <section className="enhanced-project-hero">
+        <div className="hero-background">
+          <FlashlightImage src={project.images[0]} alt={project.title} />
+        </div>
         <div className="hero-overlay">
           <div className="hero-content-wrapper">
             <div className="project-title-section">

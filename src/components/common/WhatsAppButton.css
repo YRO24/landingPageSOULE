@@ -1,27 +1,72 @@
-.whatsapp-button {
+.whatsapp-container {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Toggle button (chat icon / close icon) */
+.whatsapp-toggle-button {
   width: 60px;
   height: 60px;
-  background: white;
-  border: 2px solid black;
+  background: #000;
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  color: black;
+  color: white;
+  order: 2;
+}
+
+.whatsapp-toggle-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-toggle-button:active {
+  transform: scale(0.95);
+}
+
+/* WhatsApp button (green) */
+.whatsapp-button {
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  color: white;
+  animation: slideIn 0.3s ease;
+  order: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .whatsapp-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-  background: black;
-  color: white;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
 }
 
 .whatsapp-button:active {
@@ -29,28 +74,38 @@
 }
 
 @media (max-width: 768px) {
-  .whatsapp-button {
+  .whatsapp-container {
     bottom: 1.5rem;
     right: 1.5rem;
+  }
+  
+  .whatsapp-button,
+  .whatsapp-toggle-button {
     width: 55px;
     height: 55px;
   }
   
-  .whatsapp-button svg {
+  .whatsapp-button svg,
+  .whatsapp-toggle-button svg {
     width: 22px;
     height: 22px;
   }
 }
 
 @media (max-width: 480px) {
-  .whatsapp-button {
+  .whatsapp-container {
     bottom: 1rem;
     right: 1rem;
+  }
+  
+  .whatsapp-button,
+  .whatsapp-toggle-button {
     width: 50px;
     height: 50px;
   }
   
-  .whatsapp-button svg {
+  .whatsapp-button svg,
+  .whatsapp-toggle-button svg {
     width: 20px;
     height: 20px;
   }
