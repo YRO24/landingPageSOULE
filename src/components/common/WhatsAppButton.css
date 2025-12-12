@@ -4,22 +4,24 @@
   right: 2rem;
   width: 60px;
   height: 60px;
-  background: #25D366;
-  border: none;
+  background: white;
+  border: 2px solid black;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: all 0.3s ease;
-  color: white;
+  color: black;
 }
 
 .whatsapp-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  background: black;
+  color: white;
 }
 
 .whatsapp-button:active {

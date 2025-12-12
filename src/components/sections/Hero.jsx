@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './Hero.css';
 import Button from '../common/Button';
 
 const Hero = ({ title, subtitle, backgroundImage, communityName = '', slideImages = [] }) => {
   const [imageLoadError, setImageLoadError] = useState(false);
+  const heroRef = useRef(null);
   
   // Use only the first image as the hero background
   const baseImage = (slideImages && slideImages.length > 0 ? slideImages[0] : backgroundImage) || '';
@@ -11,6 +12,33 @@ const Hero = ({ title, subtitle, backgroundImage, communityName = '', slideImage
   // Handle image load errors
   const handleImageError = useCallback(() => {
     setImageLoadError(true);
+  }, []);
+
+  // Flashlight effect (desktop only)
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    // Check if device is mobile
+    const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                     window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    
+    if (isMobile) return; // Don't add flashlight on mobile
+
+    const handleMouseMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      hero.style.setProperty('--mouse-x', `${x}px`);
+      hero.style.setProperty('--mouse-y', `${y}px`);
+    };
+
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
+    return () => {
+      hero.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
 
@@ -30,6 +58,7 @@ const Hero = ({ title, subtitle, backgroundImage, communityName = '', slideImage
 
   return (
     <section 
+      ref={heroRef}
       className="hero"
       style={{
         backgroundImage: imageLoadError

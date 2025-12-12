@@ -48,16 +48,10 @@
 
 @media (max-width: 768px) {
   .flashlight-image-reveal {
-    background: radial-gradient(
-      circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      transparent 0%,
-      transparent 60px,
-      rgba(0, 0, 0, 0.85) 150px
-    );
+    display: none;
   }
   
   .flashlight-image-container::after {
-    width: 300px;
-    height: 300px;
+    display: none;
   }
 }
