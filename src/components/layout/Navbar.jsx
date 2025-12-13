@@ -14,6 +14,13 @@ const Navbar = () => {
   );
 
   useEffect(() => {
+    // Set initial navbar to light mode for project detail and about pages
+    const currentPath = location.pathname;
+    const shouldStartLight = currentPath.includes('/project/') || currentPath.includes('/about');
+    setIsDarkTheme(shouldStartLight);
+  }, [location]);
+
+  useEffect(() => {
     // Detect light background sections and communities section
     const handleScroll = () => {
       // Define light sections for all pages (sections with light backgrounds that need dark navbar text)
