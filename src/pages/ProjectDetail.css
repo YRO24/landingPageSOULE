@@ -113,7 +113,7 @@
 /* Project Content Section */
 .project-content-section {
   padding: 6rem 0;
-  background: #f9f9f9;
+  background: #000;
 }
 
 .content-container {
@@ -143,14 +143,14 @@
   font-weight: 600;
   letter-spacing: 3px;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
 }
 
 .detail-text {
   font-size: 1rem;
   line-height: 1.8;
-  color: #555;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
 }
 
@@ -163,7 +163,7 @@
 .tech-item {
   font-size: 1rem;
   line-height: 2;
-  color: #555;
+  color: rgba(255, 255, 255, 0.9);
   padding-left: 1.5rem;
   position: relative;
   font-weight: 300;
@@ -173,7 +173,7 @@
   content: '•';
   position: absolute;
   left: 0;
-  color: #333;
+  color: rgba(255, 255, 255, 0.7);
   font-weight: bold;
 }
 
@@ -206,11 +206,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.gallery-item:hover .gallery-image {
-  /* No zoom on hover */
 }
 
 /* Extended Gallery */
@@ -236,11 +231,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.extended-gallery-item:hover .extended-gallery-image {
-  /* No zoom on hover */
 }
 
 /* Responsive Design */

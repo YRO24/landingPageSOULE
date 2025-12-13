@@ -40,11 +40,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.5s;
-}
-
-.project-showcase:hover .project-image img {
-  /* No zoom on hover */
 }
 
 .project-info {

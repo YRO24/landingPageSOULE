@@ -7,30 +7,17 @@ import './Navbar.css';
 const Navbar = () => {
   const location = useLocation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showProjectsOverlay, setShowProjectsOverlay] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(
     typeof window !== 'undefined' ? window.innerWidth <= 900 : false
   );
 
-
-
-  useEffect(() => {
-    // Set initial dark theme based on route
-    const currentPath = location.pathname + location.search;
-    const shouldStartDark = currentPath.includes('/portfolio') || 
-                           currentPath.includes('portfolio?category=project-execution');
-    setIsDarkTheme(shouldStartDark);
-  }, [location]);
-
   useEffect(() => {
     // Detect light background sections and communities section
     const handleScroll = () => {
-      const currentPath = window.location.pathname + window.location.search;
-      const forceLightRoute = currentPath.includes('/portfolio') || currentPath.includes('/project/');
-      // Define light sections for all pages including project detail pages
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .team-section, .mission-vision, .core-values, .services-section, .project-content-section, .project-gallery-section, .extended-gallery-section, .portfolio-page, .portfolio-nav, .project-detail-page, .about-page');
+      // Define light sections for all pages (sections with light backgrounds that need dark navbar text)
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .mission-vision, .core-values, .services-section, .portfolio-page, .portfolio-nav, .about-page');
       const navbarHeight = 60; // Reduced height for more precise detection
       
       let isOverLightSection = false;
@@ -42,9 +29,7 @@ const Navbar = () => {
           isOverLightSection = true;
         }
       });
-      if (forceLightRoute) {
-        isOverLightSection = true;
-      }
+      
       setIsDarkTheme(isOverLightSection);
     };
 
@@ -62,13 +47,8 @@ const Navbar = () => {
 
     window.addEventListener('scroll', throttledScroll, { passive: true });
     
-    // Set initial transparency and then check scroll state
-    if (isInitialLoad && location.pathname === '/') {
-      setIsDarkTheme(false); // Start transparent on home page
-      setIsInitialLoad(false);
-    } else {
-      handleScroll(); // Check initial state for other pages
-    }
+    // Check initial scroll state
+    handleScroll();
     
     return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
