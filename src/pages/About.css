@@ -4,15 +4,6 @@
   max-width: 100vw;
 }
 
-/* Force transparent navbar on About page always */
-.about-page .navbar,
-.about-page .navbar.dark-theme,
-.about-page .navbar.transparent {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
-}
-
 .about-hero {
   position: relative;
   min-height: 100vh;
@@ -388,19 +379,6 @@
     margin-top: 0;
   }
   
-  /* Make navbar background transparent on mobile About page */
-  .about-page .navbar {
-    background: transparent !important;
-  }
-  
-  .about-page .navbar.dark-theme {
-    background: transparent !important;
-  }
-  
-  .about-page::before {
-    display: none;
-  }
-  
   .about-hero {
     padding: 120px 1.5rem 3rem;
     margin-top: 0;
@@ -485,19 +463,6 @@
   .about-page {
     padding-top: 0;
     margin-top: 0;
-  }
-  
-  /* Make navbar background transparent on small mobile About page */
-  .about-page .navbar {
-    background: transparent !important;
-  }
-  
-  .about-page .navbar.dark-theme {
-    background: transparent !important;
-  }
-  
-  .about-page::before {
-    display: none;
   }
   
   .about-hero {
