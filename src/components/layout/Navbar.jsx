@@ -20,7 +20,6 @@ const Navbar = () => {
     // Set initial dark theme based on route
     const currentPath = location.pathname + location.search;
     const shouldStartDark = currentPath.includes('/portfolio') || 
-                           currentPath.includes('/project/') ||
                            currentPath.includes('portfolio?category=project-execution');
     setIsDarkTheme(shouldStartDark);
   }, [location]);

@@ -54,14 +54,9 @@ const Footer = () => {
         </div>
         
         <div className="footer-links">
-          <a href="#">Website development</a>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms & Conditions</a>
           <a href="#">Sitemaps</a>
-        </div>
-        
-        <div className="language-selector">
-          <span>🌐</span>
         </div>
       </div>
     </footer>
