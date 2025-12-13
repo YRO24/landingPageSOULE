@@ -131,17 +131,24 @@
   gap: 0.3rem;
 }
 
+.center-logo-link {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.center-logo-link:hover {
+  transform: scale(1.05);
+}
+
 .center-logo {
   height: 180px;
   object-fit: contain;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   /* Prevent browser zoom from affecting logo */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
-}
-
-.center-logo:hover {
-  transform: scale(1.05);
+  display: block;
 }
 
 .center-logo-text {

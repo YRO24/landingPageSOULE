@@ -14,9 +14,9 @@ const Navbar = () => {
   );
 
   useEffect(() => {
-    // Set initial navbar to light mode for project detail and about pages
+    // Set initial navbar to light mode for project detail pages only
     const currentPath = location.pathname;
-    const shouldStartLight = currentPath.includes('/project/') || currentPath.includes('/about');
+    const shouldStartLight = currentPath.includes('/project/');
     setIsDarkTheme(shouldStartLight);
   }, [location]);
 
@@ -200,11 +200,13 @@ const Navbar = () => {
           </Link>
           
           <div className="nav-center">
-            <img 
-              src={isDarkTheme ? IMAGES.souleLogoNavbarCenterDark : IMAGES.souleLogoNavbarCenter} 
-              alt="Soule Logo" 
-              className="center-logo" 
-            />
+            <Link to="/" className="center-logo-link">
+              <img 
+                src={isDarkTheme ? IMAGES.souleLogoNavbarCenterDark : IMAGES.souleLogoNavbarCenter} 
+                alt="Soule Logo" 
+                className="center-logo" 
+              />
+            </Link>
           </div>
 
           <div className="nav-actions">
