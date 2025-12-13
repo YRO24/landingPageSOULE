@@ -24,7 +24,7 @@ const Navbar = () => {
     // Detect light background sections and communities section
     const handleScroll = () => {
       // Define light sections for all pages (sections with light backgrounds that need dark navbar text)
-      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .mission-vision, .core-values, .services-section, .portfolio-page, .portfolio-nav, .about-page');
+      const lightSections = document.querySelectorAll('.about-soule, .contact-section, .communities-section, .mission-vision, .core-values, .services-section, .portfolio-page, .portfolio-nav');
       const navbarHeight = 60; // Reduced height for more precise detection
       
       let isOverLightSection = false;
@@ -54,11 +54,15 @@ const Navbar = () => {
 
     window.addEventListener('scroll', throttledScroll, { passive: true });
     
-    // Check initial scroll state
-    handleScroll();
+    // Only check initial scroll state if not on about or project detail pages
+    // (those pages set their own initial state)
+    const currentPath = location.pathname;
+    if (!currentPath.includes('/project/') && !currentPath.includes('/about')) {
+      handleScroll();
+    }
     
     return () => window.removeEventListener('scroll', throttledScroll);
-  }, []);
+  }, [location]);
 
 
 
